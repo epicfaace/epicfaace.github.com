@@ -12,7 +12,7 @@ $(function() {
     }
     $("a.framelink").click(function() {
     if (d==0) { $('iframe').attr('src',$(this).data('url')); }
-    else { window.open($(this).data('url'),"_blank"); }
+    else { d=0; window.open($(this).data('url'),"_blank"); }
     });
     $(document).keydown(function(e){
     if (e.which==68) { //keypressed is d
