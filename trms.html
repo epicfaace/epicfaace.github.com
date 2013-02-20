@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="main.css" rel="stylesheet" type="text/css">
+    <script src="jquery.min.js"></script>
+    <script>
+$(function() {
+    d=0;
+    iframeattr=function(url) {
+    javascript:$('iframe').attr('src',url);
+    }
+    $("a.framelink").click(function() {
+    if (d==0) { $('iframe').attr('src',$(this).data('url')); }
+    else { window.open($(this).data('url'),"_blank"); }
+    });
+    $("*").keydown(function(e){
+    if (e.which==68) { //keypressed is d
+    d=1; }
+    else {d=0;}
+    });
+    $("*").keyup(function(){
+    d=0;
+    });
+
+    });
+    </script>
+    <style>
+table#nav a {
+    display:block;
+    }
+    th {
+    background:#e3e3e3;
+    }
+    </style>
+
+    <title></title>
+</head>
+
+<body>
+    <h1 style="float:left;"><a class="framelink" data-url="http://trms.ga.net"
+    href="javascript:void(0)" style="display:inline;">TRMS</a> stuff!</h1>
+
+    <div style="float:right;">
+        D is new tab<br>
+        <!--<a class="framelink" href="javascript:void(0)" data-url="http://216.92.225.97/">All</a>-->
+    </div>
+
+    <table cellpadding="5" cellspacing="8" id="nav" style=
+    "float:right;text-align:center;">
+        <tr>
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/kathleen_barkley/tag-language-arts-8-lv-a/"
+            href="javascript:void(0)">Reading/LA</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/monica_ray/tag-georgia-studies-8/" href=
+            "javascript:void(0)">SS</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/steve_bradley/band-8/" href=
+            "javascript:void(0)">Band</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/jef_franklin/health-8/" href=
+            "javascript:void(0)">Health</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/media_center/my-schedule.html" href=
+            "javascript:void(0)">Media Center</a></td>
+        </tr>
+
+        <tr>
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/maria_andres/spanish-8/" href=
+            "javascript:void(0)">Spanish</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/leslie_baker/gps-accelerated-geometry-h/"
+            href="javascript:void(0)">Math</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/nancy_lockwood/sciphy-world-lv-a/" href=
+            "javascript:void(0)">Science</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://fcsdestiny.fultonschools.org/common/servlet/presenthomeform.do"
+            href="javascript:void(0)">Online Library</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/jon_sharretts/sa-adv-quest-8/" href=
+            "javascript:void(0)">Adv quest</a></td>
+        </tr>
+
+        <tr>
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/trms_administration/" href=
+            "javascript:void(0)">Administration</a></td>
+
+            <td><a href="http://twitter.com/proud_tigers" target=
+            "_blank">Twitter</a></td>
+
+            <td><a class="framelink" data-url=
+            "http://216.92.225.97/melissa_hartfield/academic-bowl/" href=
+            "javascript:void(0)">Academic Bowl</a></td>
+        </tr>
+    </table><iframe src="http://trms.ga.net" style=
+    "width:100%;height:78%;clear:both;">
+    <h1>NVM!! NOT WORKING! YAYAYYAYAYA!</h1></iframe>
+
+    <table border id="txtbooks">
+        <tr>
+            <th>Subject/name</th>
+
+            <th>Username</th>
+
+            <th>Password</th>
+
+            <th>Website</th>
+        </tr>
+
+        <tr>
+            <td>Science Holt</td>
+
+            <td>troad1</td>
+
+            <td>pscience</td>
+
+            <td><a class="framelink" data-url=
+            "http://my.hrw.com/tabnav/controller.jsp?isbn=0030935539" href=
+            "javascript:void(0)">http://my.hrw.com/tabnav/controller.jsp?isbn=0030935539</a>Not
+            working</td>
+        </tr>
+
+        <tr>
+            <td>Math 2</td>
+
+            <td>hooch2010</td>
+
+            <td>hooch2010</td>
+
+            <td><a class="framelink" data-url=
+            "http://www.classzone.com:80/cz/books/hs_math_2_ga/secured/resources/applications/ebook/index.jsp"
+            href=
+            "javascript:void(0)">http://www.classzone.com:80/cz/books/hs_math_2_ga/secured/resources/applications/ebook/index.jsp</a></td>
+        </tr>
+
+        <tr>
+            <td>Math 3</td>
+
+            <td>hooch2010</td>
+
+            <td>hooch2010</td>
+
+            <td><a class="framelink" data-url=
+            "http://www.classzone.com:80/cz/books/hs_math_3_ga/secured/resources/applications/ebook/index.jsp"
+            href=
+            "javascript:void(0)">http://www.classzone.com:80/cz/books/hs_math_3_ga/secured/resources/applications/ebook/index.jsp</a></td>
+        </tr>
+
+        <tr>
+            <td>SS</td>
+
+            <td>N/A</td>
+
+            <td>ga11hist</td>
+
+            <td><a class="framelink" data-url=
+            "http://mystatehistory.com/georgia/ga_05/" href=
+            "javascript:void(0)">http://mystatehistory.com/georgia/ga_05/</a></td>
+        </tr>
+    </table><br>
+    <br>
+
+    <footer>
+        <a href="index.html" style="margin-top:10px;">Main page</a>
+    </footer>
+</body>
+</html>
