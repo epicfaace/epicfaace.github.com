@@ -14,12 +14,12 @@ $(function() {
     if (d==0) { $('iframe').attr('src',$(this).data('url')); }
     else { window.open($(this).data('url'),"_blank"); }
     });
-    $("*").keydown(function(e){
+    $(document).keydown(function(e){
     if (e.which==68) { //keypressed is d
     d=1; }
     else {d=0;}
     });
-    $("*").keyup(function(){
+    $(document).keyup(function(){
     d=0;
     });
 
