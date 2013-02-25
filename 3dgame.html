@@ -1,4 +1,4 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <!--
 http://www.gamedev.net/blog/33/entry-2227887-more-on-minecraft-type-world-gen/
 -->
@@ -12,7 +12,7 @@ $(function() {
 		var zvel=0;
 		var velC=.9;
 		var prevPos;
-		//var socket = io.connect('/3dgameHandler');
+		var socket = io.connect('/3dgameHandler');
 		var world=[];
 		$(document).keydown(function(e) {
 				var code = (e.keyCode ? e.keyCode : e.which);
@@ -69,7 +69,7 @@ $(function() {
 
 				geometry = new THREE.CubeGeometry( 10, 10, 10 );
 				//material = new THREE.MeshBasicMaterial( { color: 0xff0000} );
-				texture = THREE.ImageUtils.loadTexture('textures/sonic_sonicRunning.gif');
+				texture = THREE.ImageUtils.loadTexture('sonic_sonicRunning.gif');
 				material = new THREE.MeshBasicMaterial({map: texture});
 
 				cube = new THREE.Mesh( geometry, material );
@@ -190,7 +190,7 @@ $(function() {
 				//console.log(PerlinNoise.noise(10,10,.5));
 				//for ()
 
-				/*//renders grass on the ground
+				//renders grass on the ground
 				geometry_ = new THREE.Geometry();
 				//material = new THREE.MeshBasicMaterial( { color: 0xff0000} );
 				texture_both = THREE.ImageUtils.loadTexture('textures/grass_dirt.png');
@@ -210,7 +210,7 @@ $(function() {
 						map: texture_both
 				}), new THREE.MeshBasicMaterial({
 						map: texture_both
-				})]);*/
+				})]);
 				var simp=new SimplexNoise();
 				/*var scale = 0.02;
 				var ground = -10;
