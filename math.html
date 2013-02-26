@@ -78,18 +78,15 @@
                                 console.log(msg);
                                 $(this).siblings("div.content").html(msg).children("div").hide();
                                 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-                                $("h2").click(function() {
-                                    $(this).next("div").first().slideToggle();
-                                });
                             });*/
                         }
                     }
                 }
                 $(this).siblings("div.content").slideToggle();
             });
-            /*$("h2").click(function() {
+            $("h2").click(function() {
                 $(this).next("div").first().slideToggle();
-            });*/
+            });
         });
     </script>
 </head>
