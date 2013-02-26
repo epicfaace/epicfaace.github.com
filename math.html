@@ -69,7 +69,7 @@
                     if ($(this).parent().attr("data-loaded")==="false") {
                         $(this).parent().attr("data-loaded","true");
                         if ($(this).parent().attr("data-url")) {
-                            $.ajax({
+                           /* $.ajax({
                                 type:"GET",
                                 url:$(this).parent().attr("data-url"),
                                 dataType:"text",
@@ -81,15 +81,15 @@
                                 $("h2").click(function() {
                                     $(this).next("div").first().slideToggle();
                                 });
-                            });
+                            });*/
                         }
                     }
                 }
                 $(this).siblings("div.content").slideToggle();
             });
-            /*$("h2").click(function() {
+            $("h2").click(function() {
                 $(this).next("div").first().slideToggle();
-            });*/
+            });
         });
     </script>
 </head>
@@ -147,7 +147,7 @@ $$\int_a^b f'(x)\,dx$$
             </div>
         </div>
     </div>
-    <div class="topic" data-url="matrices.html">
+    <div class="topic">
     	<!--
 		$$\left[ \begin{array}{ccc}
 		a & b & c \\
