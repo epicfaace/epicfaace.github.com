@@ -1,0 +1,315 @@
+<!--http://epicfaace.netii.net/ajaxtest/custom.php?url=1VHHKLdxNkF_uJa1y2cD5mXnSTpvw-LBGdZ6mKGRvYDg&export=txt-->
+<!--http://docs.mathjax.org/en/latest/configuration.html#loading-cdn-->
+<!--http://docs.mathjax.org/en/v1.1-latest/start.html#tex-and-latex-input-->
+<!--Using mathjax, maybe pgfplots-->
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src=
+    "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    type="text/javascript"></script>
+    <script type="text/x-mathjax-config" id="mathjaxConfig">
+    MathJax.Hub.Config({
+		    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+            TeX: {
+                extensions: ["color.js", "cancel.js", "enclose.js"]
+            }
+		    });
+    </script>
+    <style>
+	@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+    body
+    {
+	    font-family:'open sans';
+	    height:99%;
+    }
+    div.topic
+    {
+	    width:23%;
+	    border:1px solid black;
+	    padding:8px;
+	    margin:5px;
+	    float:left;
+        box-shadow:rgba(200,200,200,.5) 2px 2px 2px 2px;
+        display:inline-block;
+        background-color: #FFFFFF;
+    }
+    h3,h5
+    {
+    	color:#585858;
+    }
+    h4,h6
+    {
+    	font-style: italic;
+    }
+    </style>
+    <title>Math</title>
+    <script>
+        $(function() {
+            $("div.topic").attr("data-open","false").attr("data-loaded","false");
+            $("div.topic div.content, div.content div").hide();
+            $("h1").click(function() {
+                if ($(this).parent().attr("data-open")==="true") {
+                    $(this).parent().attr("data-open","false");
+                    $(this).parent().animate({
+                        "width":"23%"
+                    },500);
+                    //$(this).parent().insertAfter($("div.topic").last());
+                }
+                else
+                {
+                    $(this).parent().attr("data-open","true");
+                    $(this).parent().animate({
+                        "width":"40%"
+                    },500);
+                    //$("div.topic").insertAfter($(this).parent());
+                    if ($(this).parent().attr("data-loaded")==="false") {
+                        $(this).parent().attr("data-loaded","true");
+                        if ($(this).parent().attr("data-url")) {
+                            /*$.ajax({
+                                type:"GET",
+                                url:$(this).parent().attr("data-url"),
+                                dataType:"text",
+                                context:$(this)
+                            }).done(function(msg) {
+                                console.log(msg);
+                                $(this).siblings("div.content").html(msg).children("div").hide();
+                                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+                                $("h2").click(function() {
+                                    $(this).next("div").first().slideToggle();
+                                });
+                            });*/
+                        }
+                    }
+                }
+                $(this).siblings("div.content").slideToggle();
+            });
+            /*$("h2").click(function() {
+                $(this).next("div").first().slideToggle();
+            });*/
+        });
+    </script>
+</head>
+
+<body>
+    <!--\(...\) or $.$ inline, \[...\] or $$.$$ block-->
+    <!--
+$$\frac{2}{3}$$
+$$\int_a^b f'(x)\,dx$$
+-->
+    <div class="topic">
+        <h1>Differential Calculus</h1>
+        <div class="content">
+            <h2>Introduction</h2>
+            <div>
+                A derivative is the slope of a line. If the slope is not constant, the derivative can be in terms of x! Some notations:
+                $$\frac{d}{dx}f(x), \frac{d}{dx}{y},\frac{dy}{dx},y',f'(x)$$
+                $dx$ is an infinitesimally small quanitity, which is what derivatives are: finding the slope between $(x,f(x))$ and $((x+h),f(x+h))$ as h approaches 0, so it converges to the instantaneous rate of change at the point $(x,f(x))$.
+            </div>
+            <h2>Rules</h2>
+            <div>
+                Assume that $a$ and $b$ are constants.<br>
+                A polynomial derivative can be broken up into the sums of the derivatives of individual monomials:
+                $$(f+g)'(x)=f'(x)+g'(x)$$
+                This is the power rule:
+                $$\frac{d}{dx}x^{a}=ax^{a-1}$$
+                Any constant can be factored out from a derivative: (This can be proven with the product rule)
+                $$\frac{d}{dx}a*f(x)=a*\frac{d}{dx}f(x)$$
+                Combining the two previous rules is a handy tool to easily calculate the derivative of a monomial:
+                $$\frac{d}{dx}ax^{b}=abx^{b-1}$$
+                <h3>Special derivatives</h3>
+                $$\frac{d}{dx}\ln{x}=\frac{1}{x}$$
+                $$\frac{d}{dx}e^{x}=e^{x}$$
+                <h3>Trigonometric derivatives</h3>
+                $$\frac{d}{dx}\sin{x}=\cos{x}$$
+                $$\frac{d}{dx}\cos{x}=-\sin{x}$$
+
+                Chain rule: $$
+            </div>
+        </div>
+    </div>
+    <div class="topic">
+        <h1>Integral Calculus</h1>
+        <div class="content">
+            <h2>Indefinite</h2>
+            <div>
+                Indefinite integral is the antiderivative:<br>
+                $$\int f'(x)\,dx=f(x)+C$$
+                <br>C is a constant, since $\frac{d}{dx}f(x)=\frac{d}{dx}(f(x)+C)$<br>
+                <h3>Properties</h3>
+                Assuming a and b are constants:
+                $$\int f(x)+g(x)\,dx=\int f(x)\,dx+\int g(x)\,dx$$
+                $$\int ax^b\,dx=\frac{a}{b+1}a^{b+1}$$
+                $$\int b\,dx=\int b^{0}\,dx=bx$$
+            </div>
+        </div>
+    </div>
+    <div class="topic" data-url="matrices.html">
+    	<!--
+		$$\left[ \begin{array}{ccc}
+		a & b & c \\
+		d & e & f \\
+		g & h & i \end{array} \right]$$
+		{ccc} is alignment of each column; can be l, r, or c each.
+		$$\left[ \begin{array}{cc}a & b \\c & d \end{array} \right]$$
+    -->
+    	<h1>Matrices</h1>
+<h2>Introduction</h2>
+<div>
+    This is a 3x2 matrix. Columns by rows; counterintuitive!
+    $$\underbrace{\left[ \begin{array}{ccc}a & b \\c & d \\ e& f \end{array} \right]}_\textrm{2 columns}\textrm{3 rows}$$
+    Matrices are denoted by capital letters, like $A$.
+</div>
+<h2>Basic operations</h2>
+<div>
+    <h3>Addition</h3>
+    This applies to any dimensions, and applies to subtraction, too.
+    $$\left[ \begin{array}{cc}a & b \\c & d \end{array} \right]
+    +\left[ \begin{array}{cc}e & f \\g & h \end{array} \right]=
+    \left[ \begin{array}{cc}a+e & b+f \\c+g & d+h \end{array} \right]$$
+    However, for addition, both matrices must have the same dimensions.
+    $$\left[ \begin{array}{cc}a & b \\c & d \end{array} \right]
+    +\left[ \begin{array}{c}a & b \end{array} \right]=\textrm{undefined}$$
+    <h3>Multiplication</h3>
+    Multiplying a matrix by a scalar is very easy.
+    $$x\left[ \begin{array}{cc}a & b \\c & d \end{array} \right]
+    =\left[ \begin{array}{cc}xa & xb \\xc & xd \end{array} \right]$$
+    Multiplying a matrix by a matrix is a bit more complicated. Go right on each row while down on each column.
+    $$\left[ \begin{array}{cc}\textcolor{red}{a} & \textcolor{blue}{b} \\c & d \end{array} \right]
+    \left[ \begin{array}{cc}\textcolor{red}{e} & f \\\textcolor{blue}{g} & h \end{array} \right]=
+    \left[ \begin{array}{cc}\textcolor{red}{ae}+\textcolor{blue}{bg} & af+bh \\ce+dg & cf+dh \end{array} \right]
+    $$
+    $$\left[ \begin{array}{cc}a & b \\c & d \end{array} \right]\left[ \begin{array}{c} e\\f \end{array} \right]=\left[ \begin{array}{c}ae+bf \\ce+df \end{array} \right]$$
+    If matrix A has dimensions $a*b$ and matrix B has dimensions $c*d$,  matrix AB is defined iff $b==c$ and has dimensions $a*d$.
+</div>
+<h2>Determinant</h2>
+<div>
+    The determinant of $A$ is denoted as $\textrm{det}(A)$ or $|A|$<br>
+    A matrix can have a determinant iff its dimensions are $n*n$ (It has the same number of rows and columns)
+    <h3>2x2</h3>
+    $$\textrm{det}\left[ \begin{array}{cc}a & b \\c & d \end{array} \right]=ad-bc$$
+    <h3>3x3</h3>
+    <h4>Lattice method</h4>
+    It is also called the diagonal method. Write out the first two columns next to the matrix. Multiply diagonals of 3 numbers from left to right, and get their sum. Then subtract the sum of diagonals of 3 numbers from right to left.
+    $$\left| \begin{array}{ccc}
+        \textcolor{green}{a} & \textcolor{blue}{b} & \textcolor{red}{c} \\
+        d & \textcolor{green}{e}&\textcolor{blue}{f} \\
+        g& h &\textcolor{green}{i}
+    \end{array}\right|
+    \begin{array}{cc}a & b \\
+    \textcolor{red}{d}&e\\
+    \textcolor{blue}{g}&\textcolor{red}{h}\end{array}-
+
+    \left| \begin{array}{ccc}
+        a & b & \textcolor{blueviolet}{c} \\
+        d & \textcolor{blueviolet}{e}&\textcolor{skyblue}{f} \\
+        \textcolor{blueviolet}{g}& \textcolor{skyblue}h &\textcolor{orange}{i}
+    \end{array}\right|
+    \begin{array}{cc}\textcolor{skyblue}a & \textcolor{orange}b \\
+    \textcolor{orange}d&e\\
+    g&h\end{array}$$
+    $$(\textcolor{green}{aei}+\textcolor{blue}{bfg}+\textcolor{red}{cdh})-(\textcolor{blueviolet}{ceg}+\textcolor{skyblue}{afh}+\textcolor{orange}{bdi})$$
+    <h4>Expansion by minors</h4>
+    To find the minor of element $a$ in a matrix, cross out the row and column and the matrix remaining is the minor.
+    $$\left[ \begin{array}{ccc}\textcolor{red}{a} & \enclose{horizontalstrike}b & \enclose{horizontalstrike}c\\\enclose{horizontalstrike}d & e & f\\\enclose{horizontalstrike}g & h & i \end{array} \right]\rightarrow \left[ \begin{array}{cc}e&f\\h&i \end{array} \right]$$
+    Find the determinants of the minors of three elements in the same row/column, and multiply them each by the elements. Also multiply by the sign for each element in the matrix $\left[ \begin{array}{ccc}+&-&+\\-&+&-\\+&-&+ \end{array} \right]$.For example, the three elements chosen in matrix $A$ can be $a$, $b$, and $c$.
+    $$|A|=a\left| \begin{array}{cc}e&f\\h&i \end{array} \right|-b\left| \begin{array}{cc}d&f\\g&i \end{array} \right|+c\left| \begin{array}{cc}d&e\\g&h \end{array} \right|$$
+</div>
+<h2>Inverse</h2>
+<div>
+    A matrix $A$ has an inverse iff $\textrm{det}(A)\neq0$
+    <h3>2x2</h3>
+        $${\left[ \begin{array}{cc}a&b\\c&d \end{array} \right]}^{-1}=\frac{\left[ \begin{array}{cc}d&-b\\-c&a \end{array} \right]}{\left| \begin{array}{cc}a&b\\c&d \end{array} \right|}$$
+        $\left[ \begin{array}{cc}d&-b\\-c&a \end{array} \right]$ is a "flippy matrix"; flip $a$ and $d$ and negate $b$ and $d$.
+    <h3>3x3</h3>
+        $$\textrm{Let }A=\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]$$
+        Find the cofactor matrix (matrix of minors); for each element, replace it with the determinant of its minor. Also multiply by the sign for each element in the matrix $\left[ \begin{array}{ccc}+&-&+\\-&+&-\\+&-&+ \end{array} \right]$.
+        $$
+        \left[ \begin{array}{ccc}
+            +\left| \begin{array}{cc}e&f\\h&i\end{array} \right|
+            &-\left| \begin{array}{cc}d&f\\g&i\end{array} \right|
+            &+\left| \begin{array}{cc}d&e\\g&h\end{array} \right|\\
+            -\left| \begin{array}{cc}b&c\\h&i\end{array} \right|
+            &+\left| \begin{array}{cc}a&c\\g&i\end{array} \right|
+            &-\left| \begin{array}{cc}a&b\\g&h\end{array} \right|\\
+            +\left| \begin{array}{cc}b&c\\e&f\end{array} \right|
+            &-\left| \begin{array}{cc}a&c\\d&f\end{array} \right|
+            &+\left| \begin{array}{cc}a&b\\d&e\end{array} \right|\\
+        \end{array} \right]
+        $$
+        Let the cofactor matrix be $\left[ \begin{array}{ccc}q&r&s\\t&u&v\\w&x&y \end{array} \right]$. Now find the transpose of that matrix, which means to switch the rows and columns.
+        $$\left[ \begin{array}{ccc}q&r&s\\t&u&v\\w&x&y \end{array} \right]\rightarrow\left[ \begin{array}{ccc}q&t&w\\r&u&x\\s&v&y \end{array} \right]$$
+        This is called the adjugate of matrix $A$.
+        To find the inverse, divide the adjugate by the determinant of the original matrix.
+        $$A^{-1}=\frac{\left[ \begin{array}{ccc}q&t&w\\r&u&x\\s&v&y \end{array} \right]}{|A|}$$
+        <h3>Identity</h3>
+        The identity matrix is the matrix equivalent of 1:<ul>
+        <li>Multiplying matrix $A$ by the identity matrix gives you $A$.</li>
+        <li>Multiplying matrix $A$ by its inverse $A^{-1}$ gives you the identity matrix.</li>
+        </ul>
+        The 2x2 identity matrix is $\left[ \begin{array}{cc}1&0\\0&1 \end{array} \right]$.
+        The 3x3 identity matrix is $\left[ \begin{array}{ccc}1&0&0\\0&1&0\\0&0&1 \end{array} \right]$.
+</div>
+<h2>Systems with Cramer's Rule</h2>
+<div>
+    Cramer's rule is an efficient way of solving systems of 2 and 3+ variables.
+    <h3>2 variables</h3>
+    $$ax+by=e$$
+    $$cx+dy=f$$
+    $$A=\left[ \begin{array}{cc}a&b\\c&d\end{array} \right]$$
+    $$x=\frac{\left[ \begin{array}{cc}e&b\\f&d\end{array} \right]}{|A|}, y=\frac{\left[ \begin{array}{cc}a&e\\c&f\end{array} \right]}{|A|}$$
+    To solve for a variable, replace the column containing that variable's coefficients with the coefficients which are just numbers.
+    <h3>3+ variables</h3>
+    Very similar to 2 variables:
+    $$ax+by+cz=j$$
+    $$dx+ey+fz=k$$
+    $$gx+hy+iz=l$$
+    $$A=\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i\end{array} \right]$$
+    $$x=\frac{\left[ \begin{array}{ccc}j&k&l\\d&e&f\\g&h&i\end{array} \right]}{|A|}, y=\frac{\left[ \begin{array}{ccc}a&b&c\\j&k&l\\g&h&i\end{array} \right]}{|A|}, z=\frac{\left[ \begin{array}{ccc}a&b&c\\d&e&f\\j&k&l\end{array} \right]}{|A|}$$
+    Similarly, this can apply to systems of equations for 4+ variables, although most people use computers/calculators for those.
+</div>
+<h2>Systems with Inverses</h2>
+<div>
+    $$ax+by=e$$
+    $$cx+dy=f$$
+    $$\left [ \begin{array}{c}x\\y\end{array} \right]=\left[ \begin{array}{cc}a&b\\c&d\end{array} \right]^{-1}\left [ \begin{array}{c}e\\f\end{array} \right]$$
+</div>
+<h2>Matrix Equations</h2>
+<div>
+    $$\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]X=\left[ \begin{array}{ccc}j&k&l\\m&n&o\\p&q&r \end{array} \right]$$
+    To normally solve for x, one would divide both sides by the matrix $\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]$. However, to "divide" with matrices, you must multiply by the inverse instead.
+    $$X=\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]^{-1}\left[ \begin{array}{ccc}j&k&l\\m&n&o\\p&q&r \end{array} \right]$$
+    When you move the inverse of the matrix to the other side, always move it to the left of the existing matrix. (Presumably, if it's $XA=B$, you would move it to the right instead?)
+</div>
+<h2>Area of Triangle</h2>
+<div>
+    The area of a triangle with points $(x_{1},y_{1})$, $(x_{2},y_{2})$, and $(x_{3},y_{3})$ is: $$\pm\frac{1}{2}\left| \begin{array}{ccc}x_{1}&y_{1}&1\\x_{2}&y_{2}&1\\x_{3}&y_{3}&1 \end{array} \right|$$
+    $\pm$ is used in place of an absolute value sign to avoid confusion with the determinant; area can only be positive.
+</div>
+    </div>
+    <div class="topic">
+    <h1>Title</h1>
+    <div class="content">
+        <h2>Blah</h2>
+    </div>
+</div><div class="topic">
+    <h1>Title</h1>
+    <div class="content">
+        <h2>Blah</h2>
+    </div>
+</div><div class="topic">
+    <h1>Title</h1>
+    <div class="content">
+        <h2>Blah</h2>
+    </div>
+</div><div class="topic">
+    <h1>Title</h1>
+    <div class="content">
+        <h2>Blah</h2>
+    </div>
+</div>
+</body>
+</html>
