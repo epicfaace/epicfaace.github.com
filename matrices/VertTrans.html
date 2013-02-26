@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src=
+	"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+	type="text/javascript"></script>
+	<script type="text/x-mathjax-config" id="mathjaxConfig">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+			TeX: {
+				extensions: ["color.js", "cancel.js", "enclose.js"]
+			}
+			});
+	</script>
+	<link href="../main.css" rel="stylesheet" type="text/css">
+	<link href="../math.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="topic">
+	<h1>Vertex-edge Graphs</h1>
+	<div class="content">
+		<p class="question">There are flights between B-C, C-E, B-D.</p><br>
+		<svg style="width:200px;height:150px;">
+			 <line x1="30" y1="50" x2="150" y2="20" style="stroke:black;stroke-width:2" />
+			 <line x1="30" y1="50" x2="180" y2="120" style="stroke:black;stroke-width:2" />
+			 <line x1="150" y1="20" x2="35" y2="125" style="stroke:black;stroke-width:2" />
+			 <circle cx="30" cy="50" r="2" stroke="black" stroke-width="2" fill="black"/>
+			 <text x="20" y="45" fill="black">B</text>
+			 <circle cx="150" cy="20" r="2" stroke="black" stroke-width="2" fill="black"/>
+			 <text x="155" y="20" fill="black">C</text>
+			 <circle cx="35" cy="125" r="2" stroke="black" stroke-width="2" fill="black"/>
+			 <text x="20" y="135" fill="black">E</text>
+			 <circle cx="180" cy="120" r="2" stroke="black" stroke-width="2" fill="black"/>
+			 <text x="185" y="125" fill="black">D</text>
+		</svg>
+		<p>Write the # of ways possible to get from destination to destination:</p>
+		$$\left[ \begin{array}{cccc}a&b&c\\d&e&f\\g&h&i\end{array} \right]$$
+		$\left [ \begin{matrix} a & b \\ c & d \end{matrix} \right]$
+	</div>
+</div>
+	<h2>Transition Matrices</h2>
+	<div>
+	todo
+	</div>
+</body>
+</html>

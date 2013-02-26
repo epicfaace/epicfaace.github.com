@@ -19,33 +19,28 @@
             }
 		    });
     </script>
-    <style>
-	@import url("http://fonts.googleapis.com/css?family=Open+Sans");
-    body
-    {
-	    font-family:'open sans';
-	    height:99%;
-    }
-    div.topic
-    {
-	    width:23%;
-	    border:1px solid black;
-	    padding:8px;
-	    margin:5px;
-	    float:left;
-        box-shadow:rgba(200,200,200,.5) 2px 2px 2px 2px;
-        display:inline-block;
-        background-color: #FFFFFF;
-    }
-    h3,h5
-    {
-    	color:#585858;
-    }
-    h4,h6
-    {
-    	font-style: italic;
-    }
-    </style>
+	<link href="main.css" rel="stylesheet" type="text/css">
+	<style>
+	div.topic
+	{
+		width:23%;
+		border:1px solid black;
+		padding:8px;
+		margin:5px;
+		float:left;
+		box-shadow:rgba(200,200,200,.5) 2px 2px 2px 2px;
+		display:inline-block;
+		background-color: #FFFFFF;
+	}
+	h3,h5
+	{
+		color:#585858;
+	}
+	h4,h6
+	{
+		font-style: italic;
+	}
+	</style>
     <title>Math</title>
     <script>
         $(function() {
@@ -127,7 +122,8 @@ $$\int_a^b f'(x)\,dx$$
                 $$\frac{d}{dx}\sin{x}=\cos{x}$$
                 $$\frac{d}{dx}\cos{x}=-\sin{x}$$
 
-                Chain rule: $$
+                <h3>Chain rule</h3>
+                $$\frac{dg}{dx}=\frac{dg}{dy}*\frac{dy}{dx}$$
             </div>
         </div>
     </div>
@@ -272,10 +268,19 @@ $$\int_a^b f'(x)\,dx$$
                 $$x=\frac{\left[ \begin{array}{ccc}j&k&l\\d&e&f\\g&h&i\end{array} \right]}{|A|}, y=\frac{\left[ \begin{array}{ccc}a&b&c\\j&k&l\\g&h&i\end{array} \right]}{|A|}, z=\frac{\left[ \begin{array}{ccc}a&b&c\\d&e&f\\j&k&l\end{array} \right]}{|A|}$$
                 Similarly, this can apply to systems of equations for 4+ variables, although most people use computers/calculators for those.
             </div>
+            <h2>Matrix Equations</h2>
+            <div>
+                $$\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]X=\left[ \begin{array}{ccc}j&k&l\\m&n&o\\p&q&r \end{array} \right]$$
+                To normally solve for x, one would divide both sides by the matrix $\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]$. However, to "divide" with matrices, you must multiply by the inverse instead.
+                $$X=\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]^{-1}\left[ \begin{array}{ccc}j&k&l\\m&n&o\\p&q&r \end{array} \right]$$
+                When you move the inverse of the matrix to the other side, always move it to the left of the existing matrix. (Presumably, if it's $XA=B$, you would move it to the right instead?)
+            </div>
             <h2>Systems with Inverses</h2>
             <div>
                 $$ax+by=e$$
                 $$cx+dy=f$$
+                Create a matrix equation and solve:
+                $$\left [ \begin{array}{cc}a&b\\c&d\\ \end{array} \right]\left [ \begin{array}{c}x\\y\end{array} \right]=\left [ \begin{array}{c}e\\f\end{array} \right]$$
                 $$\left [ \begin{array}{c}x\\y\end{array} \right]=\left[ \begin{array}{cc}a&b\\c&d\end{array} \right]^{-1}\left [ \begin{array}{c}e\\f\end{array} \right]$$
             </div>
             <h2>Reduced Row Echelon Form</h2>
@@ -286,12 +291,15 @@ $$\int_a^b f'(x)\,dx$$
             	todo:add colors
             	$$\left [ \begin{array}{cc}2&3&4\\9&-7&9\end{array} \right]$$
             </div>
-            <h2>Matrix Equations</h2>
+            <h2>Vertex-edge Graphs</h2>
             <div>
-                $$\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]X=\left[ \begin{array}{ccc}j&k&l\\m&n&o\\p&q&r \end{array} \right]$$
-                To normally solve for x, one would divide both sides by the matrix $\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]$. However, to "divide" with matrices, you must multiply by the inverse instead.
-                $$X=\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i \end{array} \right]^{-1}\left[ \begin{array}{ccc}j&k&l\\m&n&o\\p&q&r \end{array} \right]$$
-                When you move the inverse of the matrix to the other side, always move it to the left of the existing matrix. (Presumably, if it's $XA=B$, you would move it to the right instead?)
+				<svg>
+					 <polyline points="50,20 20,60" style="fill:none;stroke:black;stroke-width:3" />
+				</svg>
+            </div>
+            <h2>Transition Matrices</h2>
+            <div>
+            todo
             </div>
             <h2>Area of Triangle</h2>
             <div>

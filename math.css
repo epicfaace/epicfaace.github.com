@@ -1,0 +1,35 @@
+div.topic
+{
+	width:44%;
+	border:1px solid black;
+	padding:1%;
+	margin:1%;
+	float:left;
+	box-shadow:rgba(200,200,200,.5) 2px 2px 2px 2px;
+	display:inline-block;
+	background-color: #FFFFFF;
+}
+h0
+{
+	font-size: 5em;
+	font-weight: bold;
+	display:block;
+	text-align:center;
+	padding:1%;
+}
+h1
+{
+	font-size:2em;
+}
+h2
+{
+	font-size:1.5em;
+}
+h3,h5
+{
+	color:#585858;
+}
+h4,h6
+{
+	font-style: italic;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src=
+	"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+	type="text/javascript"></script>
+	<script type="text/x-mathjax-config" id="mathjaxConfig">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+			TeX: {
+				extensions: ["color.js", "cancel.js", "enclose.js"]
+			}
+			});
+	</script>
+	<link href="../main.css" rel="stylesheet" type="text/css">
+	<link href="../math.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h0>Systems</h0>
+<div class="topic">
+	<h1>Cramer's Rule</h1>
+	<div class="content">
+		Cramer's rule is an efficient way of solving systems of 2 and 3+ variables.
+		<h2>2 variables</h2>
+		<div>
+			$$ax+by=e$$
+			$$cx+dy=f$$
+			$$A=\left[ \begin{array}{cc}a&b\\c&d\end{array} \right]$$
+			$$x=\frac{\left[ \begin{array}{cc}e&b\\f&d\end{array} \right]}{|A|}, y=\frac{\left[ \begin{array}{cc}a&e\\c&f\end{array} \right]}{|A|}$$
+			To solve for a variable, replace the column containing that variable's coefficients with the coefficients which are just numbers.
+		</div>
+		<h2>3+ variables</h2>
+		<div>
+			Very similar to 2 variables:
+			$$ax+by+cz=j$$
+			$$dx+ey+fz=k$$
+			$$gx+hy+iz=l$$
+			$$A=\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i\end{array} \right]$$
+			$$x=\frac{\left[ \begin{array}{ccc}j&k&l\\d&e&f\\g&h&i\end{array} \right]}{|A|}, y=\frac{\left[ \begin{array}{ccc}a&b&c\\j&k&l\\g&h&i\end{array} \right]}{|A|}, z=\frac{\left[ \begin{array}{ccc}a&b&c\\d&e&f\\j&k&l\end{array} \right]}{|A|}$$
+			Similarly, this can apply to systems of equations for 4+ variables, although most people use computers/calculators for those.
+		</div>
+	</div>
+</div>
+<div class="topic">
+	<h1>Using Inverses</h1>
+	<div class="content">
+		$$ax+by=e$$
+		$$cx+dy=f$$
+		Create a <a href="javascript:alert('not there yet!');">matrix equation</a> and solve:
+		$$\left [ \begin{array}{cc}a&b\\c&d\\ \end{array} \right]\left [ \begin{array}{c}x\\y\end{array} \right]=\left [ \begin{array}{c}e\\f\end{array} \right]$$
+		$$\left [ \begin{array}{c}x\\y\end{array} \right]=\left[ \begin{array}{cc}a&b\\c&d\end{array} \right]^{-1}\left [ \begin{array}{c}e\\f\end{array} \right]$$
+	</div>
+</div>
+<div class="topic">
+	<h1>Reduced Row Echelon Form</h1>
+	<div class="content">
+		Example:
+		$$2x+3y=4$$
+		$$9x-7y=9$$
+		$$\left [ \begin{array}{cc|c}2&3&4\\9&-7&9\end{array} \right]$$
+	</div>
+</div>
+</body>
+</html>
