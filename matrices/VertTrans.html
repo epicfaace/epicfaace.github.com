@@ -35,11 +35,18 @@
 			 <text x="185" y="125" fill="black">D</text>
 		</svg>
 		<p>Write the # of ways possible to get from destination to destination:</p>
-		$$
+		$$T=
 		\begin{array}{c}B\\C\\D\\E\end{array}
 		\overset{\begin{array}{cccc}B&C&D&E\end{array}}{
 			\left[ \begin{array}{cccc}0&1&1&0\\1&0&0&1\\1&0&0&0\\0&1&0&0\end{array} \right]
 		}$$
+		What is the number of possible ways to get from B to E in two flights?
+		$$T^{2}=
+		\begin{array}{c}B\\C\\D\\E\end{array}
+		\overset{\begin{array}{cccc}B&C&D&E\end{array}}{
+			\left[ \begin{array}{cccc}2&0&0&\enclose{circle}{1}\\0&2&1&0\\0&1&1&0\\1&0&0&1\end{array} \right]
+		}$$
+		
 		$$\left [ \begin{matrix} a & b \\ c & d \end{matrix} \right]$$
 		$$\overset{\left[ \begin{array}{ccc}a&b&c\\d&e&f\\g&h&i\end{array} \right]}{bel}$$
 	</div>
