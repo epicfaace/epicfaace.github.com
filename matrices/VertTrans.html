@@ -17,6 +17,7 @@
 	<link href="../math.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<h0>Matrices - Applications</h0>
 <div class="topic">
 	<h1>Vertex-edge Graphs</h1>
 	<div class="content">
@@ -25,14 +26,16 @@
 			 <line x1="30" y1="50" x2="150" y2="20" style="stroke:black;stroke-width:2" />
 			 <line x1="30" y1="50" x2="180" y2="120" style="stroke:black;stroke-width:2" />
 			 <line x1="150" y1="20" x2="35" y2="125" style="stroke:black;stroke-width:2" />
-			 <circle cx="30" cy="50" r="2" stroke="black" stroke-width="2" fill="black"/>
-			 <text x="20" y="45" fill="black">B</text>
-			 <circle cx="150" cy="20" r="2" stroke="black" stroke-width="2" fill="black"/>
-			 <text x="155" y="20" fill="black">C</text>
-			 <circle cx="35" cy="125" r="2" stroke="black" stroke-width="2" fill="black"/>
-			 <text x="20" y="135" fill="black">E</text>
-			 <circle cx="180" cy="120" r="2" stroke="black" stroke-width="2" fill="black"/>
-			 <text x="185" y="125" fill="black">D</text>
+			 <text x="30" y="50" dx="-10" dy="-5" fill="black">B</text>
+			 <text x="150" y="20" dx="5" fill="black">C</text>
+			 <text x="35" y="125" dx="-15" dy="15" fill="black">E</text>
+			 <text x="180" y="120" dx="5" dy="5" fill="black">D</text>
+			 <g stroke="black" stroke-width="2" fill="black">
+				 <circle cx="30" cy="50" r="2"/>
+				 <circle cx="150" cy="20" r="2"/>
+				 <circle cx="35" cy="125" r="2"/>
+	 			 <circle cx="180" cy="120" r="2"/>
+			 </g>
 		</svg>
 		<p>Write the # of ways possible to get from destination to destination:</p>
 		$$T=
