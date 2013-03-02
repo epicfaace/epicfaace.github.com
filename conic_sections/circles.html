@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src=
+	"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+	type="text/javascript"></script>
+	<script type="text/x-mathjax-config" id="mathjaxConfig">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+			TeX: {
+				extensions: ["color.js", "cancel.js", "enclose.js"]
+			}
+			});
+	</script>
+	<link href="../main.css" rel="stylesheet" type="text/css">
+	<link href="../math.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h0>Circles</h0>
+<div class="topic">
+	<h1>Definition</h1>
+	<div class="content">
+		<p>A <b>circle</b> is a set of points which are equidistant from the
+		center point.</p>
+		<p>The standard form of a circle is:</p>
+		$$(x-h)^{2}+(y-k)^{2}=r^{2}$$
+		<p>The center point has coordinates $(h,k)$ and the circle has radius $r$.</p>
+		<p>The following circle has a radius of 4 and the center at $(0,0)$, thus having the equation $x^2+y^2=16$:</p>
+		<svg style="width:200px;height:200px;">
+			<g stroke = "black" stroke-width = "2" fill = "none">
+				<!--axes-->
+				<g fill="black">
+					<path d="M5,100 m0,5 l0,-10 l-5,5 m195,5 l0,-10 l5,5"/>
+					<path d="M100,5 m5,0 l-10,0 l5,-5 m5,195 l-10,0 l5,5"/>
+				</g>
+				<path d="M0,100 l200,0 M100,0 l0,200" />
+
+
+				<circle cx="100" cy="100" r="80" stroke="black" stroke-width="2" />
+
+				<!--<path d="M0,100 L100,10 L100,100 L0,100" />
+				<path d="M90,100 L90,90 L100,90" />-->
+			</g>
+			<!--
+			<circle cx="30" cy="50" r="2" stroke="black" stroke-width="2" fill="black"/>
+			<text x="20" y="45" fill="black">B</text>-->
+		</svg>
+		<p>$p$ is the focal length, or the length between the vertex and the directrix/focus.</p>
+		<p>The <b>Lotus Rectum</b> is a line segment which passes through the focus and has both endpoints on the curve. It is equal to $4p$.</p>
+		$$\textrm{Vertex: } (h,k)$$
+		$$
+		\textrm{Directrix: } \left\{ \begin{array}{cc}
+		&y=V(y)-p &&\textrm{if y=...}\\
+		&x=V(x)-p &&\textrm{if x=...}
+		\end{array}
+		\right.$$
+		$$
+		\textrm{Focus: } \left\{ \begin{array}{cc}
+		&(V(x),V(y)+p) &&\textrm{if y=...}\\
+		&(V(x)+p,V(y)) &&\textrm{if x=...}
+		\end{array}
+		\right.$$
+		$$
+		\textrm{Axis of Symmetry: } \left\{ \begin{array}{cc}
+		&x=V(x) &&\textrm{if y=...}\\
+		&y=V(y) &&\textrm{if x=...}
+		\end{array}
+		\right.$$
+	</div>
+</div>
+<div class="topic">
+	<h1>Graphing</h1>
+	<div class="content">
+		<p>This has a $\textrm{x=...}$ form:</p>
+		$$(y+2)^{2}=4(x-1)$$
+		$$\textrm{Vertex: }(1,-2)$$
+		$$4p=4; p=1\textrm{ and }LR=4$$
+		$$\textrm{Focus: }(2,-2)$$
+		$$\textrm{Directrix: }x=0$$
+		$$\textrm{AoS: }y=-2$$
+		<svg style="width:200px;height:200px;">
+			<g stroke = "black" stroke-width = "2" fill = "none" >
+				<!--axes-->
+				<g fill="black">
+					<path d="M5,60 m0,5 l0,-10 l-5,5 m195,5 l0,-10 l5,5"/>
+					<path d="M80,5 m5,0 l-10,0 l5,-5 m5,195 l-10,0 l5,5"/>
+				</g>
+				<path d="M0,60 l200,0 M80,0 l0,240"/>
+				<!--20px is 1 unit-->
+				<path d="M200,35 Q0,100 200,165" /><!--Draw parabola: M200,(60-100/LR) Q0,100 200,[200-(60-100/LR)]-->
+				<!path d="M200,0 Q0,100 200,200" />
+
+
+				<path d="M80,0 l0,200" stroke-dasharray="5,5" stroke="red"/><!--directrix-->
+				<path d="M140,100 m0,-40 l0,80" stroke="blue"/><!--LR line-->
+				<path d="M0,100 l200,0" stroke-dasharray="5,5" stroke="green"/><!--aos-->
+			</g>
+			<g  stroke="black" stroke-width="2" fill="black">
+				<circle cx="100" cy="100" r="2" /><!--vertex-->
+				<circle cx="140" cy="100" r="2" /><!--focus-->
+			</g>
+			<g fill="black">
+				<text x="100" y="100" dx="10">V</text>
+				<text x="140" y="100" dx="10">F</text>
+				<text x="80" y="15" dx="5">Directrix</text>
+				<text x="140" y="100" dx="-20" dy="20" fill="blue">LR</text>
+				<text x="0" y="100" dx="0" dy="-10" fill="green">AoS</text>
+			</g>
+		</svg>
+		<ol>
+			<li>Graph the vertex.</li>
+			<li>Graph the Focus.</li>
+			<li>Draw two points $\pm \frac{LR}{2}$ away from the focus.</li>
+			<li>Connect the vertex and the two points to draw the shape!</li>
+		</ol>
+	</div>
+</div>
+</body>
+</html>
