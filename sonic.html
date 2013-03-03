@@ -3,13 +3,41 @@
 <head>
 	<title>Sonic</title>
 	<script>
-	var c,ctx,scrollx,scrolly;
+		var c,ctx,scrollx,scrolly;
+		var speed=10;
 		function init() {
 			c=document.getElementById("canvas");
 			ctx=c.getContext("2d");
+			scrollx=156;
+			scrolly=674;
 			//drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
-			ctx.drawImage(document.getElementById('source'),0,0,480,360,0,0,480,360);
+			setInterval(tick,10);
 		}
+		function tick() {
+			ctx.drawImage(document.getElementById('source'),scrollx,scrolly,480,360,0,0,480,360);
+		}
+		document.onkeydown = function (e) {
+			e = e || window.event; 
+			var charCode = e.charCode || e.keyCode;
+			var character = String.fromCharCode(charCode); 
+			//37 39 38 40 lrud
+			if (charCode===37) //l
+			{
+				scrollx-=speed;
+			}
+			if (charCode===39) //r
+			{
+				scrollx+=speed;
+			}
+			if (charCode===38) //u
+			{
+				scrolly-=speed;
+			}
+			if (charCode===40) //d
+			{
+				scrolly+=speed;
+			}
+		};
 	</script>
 </head>
 <body onload="init();">
