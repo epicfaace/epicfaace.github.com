@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sonic</title>
+	<script>
+	var c,ctx,scrollx,scrolly;
+		function init() {
+			c=document.getElementById("canvas");
+			ctx=c.getContext("2d");
+			//drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+			ctx.drawImage(document.getElementById('source'),0,0,480,360,0,0,480,360);
+		}
+	</script>
+</head>
+<body onload="init();">
+<img src="Ghz1.png" style="display:none;" id="source">
+<canvas id="canvas" width="480" height="360"></canvas>
+</body>
+</html>
