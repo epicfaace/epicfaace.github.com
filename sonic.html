@@ -5,7 +5,10 @@
 	<script>
 		var c,ctx,scrollx,scrolly;
 		var speed=10;
+		var srcImg,sonicImg;
 		function init() {
+			srcImg=document.getElementById('source');
+			sonicImg=document.getElementById('sonic');
 			c=document.getElementById("canvas");
 			ctx=c.getContext("2d");
 			scrollx=156;
@@ -14,26 +17,28 @@
 			setInterval(tick,10);
 		}
 		function tick() {
-			ctx.drawImage(document.getElementById('source'),scrollx,scrolly,480,360,0,0,480,360);
+			ctx.drawImage(srcImg,scrollx,scrolly,480,360,0,0,480,360);
+			ctx.drawImage(sonicImg,0,0,sonicImg.width,sonicImg.height,240-sonicImg.width/2,180-sonicImg.height/2,sonicImg.width,sonicImg.height);
+			if ()
 		}
 		document.onkeydown = function (e) {
 			e = e || window.event; 
 			var charCode = e.charCode || e.keyCode;
 			var character = String.fromCharCode(charCode); 
 			//37 39 38 40 lrud
-			if (charCode===37) //l
+			if (charCode===37&&scrollx-speed>0) //l
 			{
 				scrollx-=speed;
 			}
-			if (charCode===39) //r
+			if (charCode===39&&scrollx+speed<srcImg.width) //r
 			{
 				scrollx+=speed;
 			}
-			if (charCode===38) //u
+			if (charCode===38&&scrolly-speed>0) //u
 			{
 				scrolly-=speed;
 			}
-			if (charCode===40) //d
+			if (charCode===40&&scrolly+speed<srcImg.height) //d
 			{
 				scrolly+=speed;
 			}
@@ -41,7 +46,8 @@
 	</script>
 </head>
 <body onload="init();">
-<img src="Ghz1.png" style="display:none;" id="source">
+<img src="Ghz1.png" style="display:none;" id="source" />
+<img src="sonicReg.gif" style="display:none;" id="sonic" />
 <canvas id="canvas" width="480" height="360"></canvas>
 </body>
 </html>
