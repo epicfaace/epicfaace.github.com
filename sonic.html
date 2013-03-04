@@ -4,9 +4,11 @@
 	<title>Sonic</title>
 	<script>
 		var c,ctx,scrollx,scrolly;
-		var speed=10;
+		var speed=4;
 		var srcImg,sonicImg;
+		var xel,yvel;
 		function init() {
+			xvel=0; yvel=0;
 			srcImg=document.getElementById('source');
 			sonicImg=document.getElementById('sonic');
 			c=document.getElementById("canvas");
@@ -17,9 +19,65 @@
 			setInterval(tick,10);
 		}
 		function tick() {
-			ctx.drawImage(srcImg,scrollx,scrolly,480,360,0,0,480,360);
+				// Get the CanvasPixelArray from the given coordinates and dimensions.
+				var imgd = ctx.getImageData(240-sonicImg.width/2, 180+sonicImg.height/2, sonicImg.width, 1);
+				var pix = imgd.data;
+				//console.log(pix);
+				/*// Loop over each pixel and invert the color.
+				for (var i = 0, n = pix.length; i < n; i += 4) {
+				    pix[i  ] = 255 - pix[i  ]; // red
+				    pix[i+1] = 255 - pix[i+1]; // green
+				    pix[i+2] = 255 - pix[i+2]; // blue
+				    // i+3 is alpha (the fourth element)
+				}*/
+				var ground=false;
+				for (var i = 0, n = pix.length; i < n; i += 4) {
+					//console.log(pix[i  ],pix[i+1],pix[i+2]);
+					//blue:0,136,238
+					if (!(pix[i ]===0&&pix[i+1]===136&&pix[i+2]===238))
+					{
+						ground=true;
+					}
+				}
+				//imgd.data=pix;
+				//ctx.putImageData(imgd,240-sonicImg.width/2, 180+sonicImg.height/2);
+				if (!ground)
+				{
+					yvel--;
+				}
+				else if (yvel<0)
+				{
+					yvel=0;
+				}
+				xvel*=.9;
+				scrollx+=xvel;
+				scrolly-=yvel;
+
+			ctx.drawImage(srcImg,scrollx,Math.abs(scrolly),wid(),hei(),0,0,wid(),hei());
 			ctx.drawImage(sonicImg,0,0,sonicImg.width,sonicImg.height,240-sonicImg.width/2,180-sonicImg.height/2,sonicImg.width,sonicImg.height);
-			if ()
+			
+		}
+		function wid()
+		{
+			if (srcImg.width-scrollx<=480)
+			{
+				return srcImg.width-scrollx;
+			}
+			else
+			{
+				return 480;
+			}
+		}
+		function hei()
+		{
+			if (srcImg.height-scrolly<=360)
+			{
+				return srcImg.height-scrolly;
+			}
+			else
+			{
+				return 360;
+			}
 		}
 		document.onkeydown = function (e) {
 			e = e || window.event; 
@@ -28,19 +86,22 @@
 			//37 39 38 40 lrud
 			if (charCode===37&&scrollx-speed>0) //l
 			{
-				scrollx-=speed;
+				//scrollx-=speed;
+				xvel-=speed;
 			}
 			if (charCode===39&&scrollx+speed<srcImg.width) //r
 			{
-				scrollx+=speed;
+				//scrollx+=speed;
+				xvel+=speed;
 			}
 			if (charCode===38&&scrolly-speed>0) //u
 			{
-				scrolly-=speed;
+				//scrolly-=speed;
+				yvel=10;
 			}
 			if (charCode===40&&scrolly+speed<srcImg.height) //d
 			{
-				scrolly+=speed;
+				//scrolly+=speed;
 			}
 		};
 	</script>
