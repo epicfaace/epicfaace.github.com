@@ -1,0 +1,189 @@
+<!-- http://epicfaace.netii.net/ajaxtest/custom.php?url=1J-GFsuheWaXSS0xvpC0xj2jENBdj-RMO5vqBbQWjwpw&export=txt -->
+<html>
+    
+    <head>
+    	<style>
+    		a.option
+    		{
+    			display:block;
+    			margin:5px;
+    			cursor:pointer;
+    			border:1px solid black;
+    			width:200px;
+    			min-height:30px;
+    			float:right;
+    			padding:20px;
+    			vertical-align:middle;
+    			text-align:center;
+    			background:rgba(0,100,255,.2);
+    			color:rgba(50,50,50,.9);
+    			font-family:"Open Sans","Verdana";
+    			letter-spacing:2px;
+    		}
+    	</style>
+        <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+        <script>
+            var x, words, wrong, words_orig, jsonP;
+			/*var words_orig = [
+				["demur", "to be unwilling because of doubt"],
+				["vanguard", "the leading persons in a movement"],
+				["anecdotes", "stories (pl)"],
+				["coax", "to persuade with soothing words"],
+				["sequence", "order of events"],
+				["chronicle", "to record events"],
+				["preeminent", "most outstanding"],
+				["prominence", "widely known"],
+				["intelligentsia", "the brightest people, the most educated"],
+				["peerless", "without equal"],
+				["saga", "great epic story"],
+				["detractors", "those who find flaws or fault (pl)"],
+				["cliquish", "tending to be excluding of others"],
+				["creed", "motto"],
+				["civic-mindedness", "sense of duty to community"],
+				["ethical", "honest, having standards"],
+				["entrepreneurs", "people who start new businesses (pl)"],
+				["matriarchs", "females who dominate their families (pl)"],
+				["legacy", "inheritance"],
+				["lynch", "murder by mob, especially by hanging"],
+				["racism", "holding that one race is better, without proof"],
+				["petticoat", "underskirt"],
+				["agitate", "to excite; stir up"],
+				["heyday", "time of greatest health, vigor, or success"],
+				["longevity", "long life"],
+				["psychic", "sensitive to supernatural forces"],
+				["intuitive", "instant understanding; to see into things"],
+				["pension", "regular payment, not wages (like retirement)"],
+				["persistent", "continuing; stubborn"],
+				["evangelizing", "preaching the gospel with much enthusiasm"],
+				["ha'ants", "ghosts (pl)"],
+				["oppressed", "kept down"],
+				["stereotypes", "fixed ideas about people based not on their individuality but on supposed qualities of the group to which they belong (pl)"],
+				["postwar", "after a war"],
+				["transition", "passing from one condition to another"],
+				["privations", "wants; lack of necessities (pl)"],
+				["evolve", "come into being through changes"],
+				["stigma", "mark of disgrace"],
+				["rationale", "viewpoint, way of thinking"],
+				["matrimony", "marriage"],
+				["sharecroppers", "farmers who rent the land they farm, usually giving most of their crop as payment (pl)"],
+				["feisty", "filled with boldness and spirit"],
+				["laudanum", "a solution of opium in alcohol"],
+				["appalled", "shocked and horrified"],
+				["aspirations", "desire; longing (pl)"],
+				["unattainable", "unable to have or reach"],
+				["barred", "block; exclude; forbid"],
+				["flourish", "prosper; grow"],
+				["philanthropists", "people who show love by kindness and money (pl)"],
+				["predominantly", "most noticeably"],
+				["elite", "the best people"],
+				["midwife", "woman who helps women in childbirth"],
+				["calamities", "disasters (pl)"],
+				["poll", "voting"],
+				["entrench", "to establish securely"],
+				["minstrel", "musician"],
+				["knell", "the slow ringing of a large church bell, as at a funeral"],
+				["predate", "come before"],
+				["veteran", "one who has fought in a war or had a career for a long time"],
+				["amiable", "friendly"],
+				["patronizing", "treating condescendingly"],
+				["domestic", "relating to the home"],
+				["sanitariums", "places like hospitals designed for residence of the ill (pl)"],
+				["implore", "beg"],
+				["parlor", "room for formal social functions"],
+				["hymnal", "book of church songs, hymns"],
+				["vibrant", "lively"],
+				["pilgrimage", "long journey with a purpose"],
+				["niche", "place to fit"],
+				["omen", "a sign of things to come (usually bad)"],
+				["tuition", "money paid for schooling"],
+				["intimidating", "to make timid, afraid"],
+				["cadaver", "dead body used for scientific purposes"],
+				["consecrated", "holy"],
+				["degradation", "lowered rank or status; disgrace"],
+				["hypocrisy", "two-faced behavior"],
+				["fondant", "a creamy candy"],
+				["integrity", "honor"],
+				["activist", "person who supports a cause through aggressive public action"],
+				["radical", "person whose actions or beliefs are extreme"],
+				["militant", "person who uses violence to further his/her cause"],
+				["icebox", "a cabinet with ice in it; a refrigerator"],
+				["devastated", "destroyed; ruined totally"],
+				["fervor", "a steady, intense feeling; heated emotions"],
+				["munitions", "ammunition (pl)"],
+				["forceps", "a doctor's instrument for graphing (pl)"],
+				["adversity", "a condition of suffering or hard times"],
+				["brownstones", "dwellings faced with brown stones (popular in New York City) (pl)"],
+				["internment", "the state of being interned"],
+				["paranoia", "a feeling of persecution not based on fact"],
+				["ulterior", "underneath, not visible"],
+				["de facto", "existing in face but not officially recognized"],
+				["hospice", "place of shelter, especially one for the terminally ill"] ];*/
+			//words_orig=[["a","a?"],["b","b?"]];
+			var nextWord = function() {
+				x++;
+				if (x >= words.length) {
+					x = -1;
+					if (wrong.length === 0) {
+						words = words_orig;
+						alert("Finished! Yay! Now, review!");
+					} else {
+						words = wrong;
+						alert("Finished! Yay! Now, time for the wrong words!");
+					}
+					wrong = [];
+					nextWord();
+				}
+				$("#output").html(x + 1 + " out of " + words.length + "<br>" + words[x][1]);
+				$("#word").val("");
+			};
+			var init = function() {
+				$.getJSON("quizzes.json", function(data) {
+					$.each(data, function(key, val) {
+						//console.log('ahu ahu ahu');
+						//console.log(key,val);
+						$("<a class='option'></a>")
+							.html(key)
+							.attr("onclick","start('"+key+"')")
+							.appendTo("#choices");
+						//$("<br>").appendTo("#choices");
+					  });
+					  console.log(data);
+					  window.data=data;
+				});
+				$("#output").html("Select a quiz on the right.");
+			};
+			var start = function(key) {
+				words_orig=data[key];
+				words = words_orig;
+				wrong = [];
+				words.sort(function() {
+					return 0.5 - Math.random();
+				});
+				x = -1;
+				nextWord();
+			};
+            $(function() {
+            	init();
+				$("form").submit(function(e) {
+					e.preventDefault();
+					if (words[x][0].toLowerCase() === $("#word").val().toLowerCase()) {
+						nextWord();
+					} else {
+						$("#output").append("<br><font color='red'>Wrong!</font>")
+						$("#word").val(words[x][0]);
+						wrong.push(words[x]);
+					}
+				});
+            });
+        </script>
+    </head>
+    <div style="width:50%;float:left;">
+		<div id="output" style="height:100px;font-size:1em;"></div>
+		<form>
+			<input type="text" id="word" style="display:inline-block;height:50px;font-size:1.5em;" />
+			<input type="submit" style="display:inline-block;width:60px;height:50px;background-color:lightgreen;" />
+		</form>
+	</div>
+    <div style="float:right;width:40%;text-align:right;" id="choices"></div>
+
+</html>
