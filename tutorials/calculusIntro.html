@@ -1,0 +1,57 @@
+<html>
+<head>
+	<meta charset='utf-8'> 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src=
+	"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+	type="text/javascript"></script>
+	<script type="text/x-mathjax-config" id="mathjaxConfig">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+			TeX: {
+				extensions: ["color.js", "cancel.js", "enclose.js"]
+			}
+			});
+	</script>
+	<link href="../main.css" rel="stylesheet" type="text/css">
+	<link href="../math.css" rel="stylesheet" type="text/css">
+	<style>
+	p
+	{
+		font-size:200%;
+	}
+	</style>
+</head>
+<body>
+	<h0>Calculus</h0>
+	<p>$\frac{dy}{dx}$ is the derivative of a function $y$, which is the slope!</p>
+	$$\frac{dy}{dx}\rightarrow\frac{\Delta y}{\Delta x}\rightarrow\frac{\textrm{Change in }y}{\textrm{Change in }x}\rightarrow\textrm{Slope}$$
+	<p>For example, if $y=2x+3$, $\frac{dy}{dx}$ (or $\frac{d}{dx}y$) (or $y'$) is 2.</p>
+	<p>Slope is really easy with linear equations, but what about equations such as $f(x)=x^2$? This is when <b>calculus</b> comes into play.</p>
+	<svg style="width:200px;height:200px;">
+		<g stroke = "black" stroke-width = "2" fill = "none">
+			<path d="M0,100 l200,0 M100,0 l0,200" />
+
+			<!path d="M0,0 Q100,200 200,0" />
+			<path d="M40,20 Q100,200 140,20" />
+			<!--<path d="M0,100 L100,10 L100,100 L0,100" />
+			<path d="M90,100 L90,90 L100,90" />-->
+		</g>
+		<!--
+		<circle cx="30" cy="50" r="2" stroke="black" stroke-width="2" fill="black"/>
+		<text x="20" y="45" fill="black">B</text>-->
+
+		<!--axes-->
+		<g fill="black">
+			<path d="M5,100 m0,5 l0,-10 l-5,5 m195,5 l0,-10 l5,5"/>
+			<path d="M100,5 m5,0 l-10,0 l5,-5 m5,195 l-10,0 l5,5"/>
+		</g>
+		<g stroke-width="2">
+			<circle fill="red" stroke="red" cx="100" cy="100" r="2"/>
+			<circle fill="blue" stroke="blue" cx="140" cy="20" r="2"/>
+		</g>
+			<text x="100" y="100" dx="-40" dy="20" fill="red">(0,0)</text>
+		</g>
+		<g fill="blue">
+	</svg>
+</body>
