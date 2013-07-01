@@ -1,0 +1,46 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+/*Credit to "Andrew Tyler"*/
+@font-face {
+	font-family: 'Minecraftia';
+	src: url('fonts/Minecraftia.eot');
+	src: local('‚ò∫'), url('fonts/Minecraftia.woff') format('woff'), url('fonts/Minecraftia.ttf') format('truetype'), url('fonts/Minecraftia.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*Credit to "Asherz08", "MadPixel", "Ashley Denham" for font "Minecrafter 3"*/
+@font-face {
+	font-family: 'Minecrafter_3';
+	src: url('fonts/Minecrafter_3.eot');
+	src: local('‚ò∫'), url('fonts/Minecrafter_3.woff') format('woff'), url('fonts/Minecrafter_3.ttf') format('truetype'), url('fonts/Minecrafter_3.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+p {
+	font-family:"Open Sans","Verdana";
+}
+
+h1 {
+	font-family:"Minecrafter_3","Arial Black";
+}
+
+h2,h3,h4,h5,h6
+{
+	font-family:"Minecraftia";
+}
+
+.item {
+	background-color: white;
+background-clip: padding-box;
+-moz-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANUlEQVQIW2NkYGBgQ8JAJsMvEGYEEjxQzA0SBYKvQPwFJCEExIJAfBcqoQyk3+OVwGkUVssBP4wMT0ZBZV0AAAAASUVORK5CYII=) 2 / 2px repeat;
+-ms-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANUlEQVQIW2NkYGBgQ8JAJsMvEGYEEjxQzA0SBYKvQPwFJCEExIJAfBcqoQyk3+OVwGkUVssBP4wMT0ZBZV0AAAAASUVORK5CYII=) 2 / 2px repeat;
+-o-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANUlEQVQIW2NkYGBgQ8JAJsMvEGYEEjxQzA0SBYKvQPwFJCEExIJAfBcqoQyk3+OVwGkUVssBP4wMT0ZBZV0AAAAASUVORK5CYII=) 2 / 2px repeat;
+border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANUlEQVQIW2NkYGBgQ8JAJsMvEGYEEjxQzA0SBYKvQPwFJCEExIJAfBcqoQyk3+OVwGkUVssBP4wMT0ZBZV0AAAAASUVORK5CYII=) 2 / 2px repeat;
+-webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANUlEQVQIW2NkYGBgQ8JAJsMvEGYEEjxQzA0SBYKvQPwFJCEExIJAfBcqoQyk3+OVwGkUVssBP4wMT0ZBZV0AAAAASUVORK5CYII=) 2 / 2px repeat;
+border-width: 2px;
+padding: 20px 70px;
+max-width: 750px;
+margin: 0px auto;
+position: relative;
+}
