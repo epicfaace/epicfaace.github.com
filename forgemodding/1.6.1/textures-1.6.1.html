@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../minecraft.css" rel="stylesheet" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="../syntaxhighlighter/shCore.js"></script>
+	<script src="../syntaxhighlighter/shBrushJava.js"></script>
+	<link href="../syntaxhighlighter/shCoreEclipse.css" rel="stylesheet" type="text/css" />
+	<link href="../syntaxhighlighter/shThemeEclipse.css" rel="stylesheet" type="text/css" />
+	<script src="../syntaxhighlighter/settings.js"></script>
+</head>
+<body>
+<h1><a href="..">Minecraft Forge Tutorials:</a></h1>
+<h1>Textures - 1.6.1</h1>
+<div style="width:100%;">
+<div class="item">
+<h2>Downloads</h2>
+<p>Add this to the item's class:</p>
+<pre class="brush: java;">
+public void registerIcons(IconRegister iconRegister)
+{
+	this.itemIcon = iconRegister.registerIcon("GenericMod:"+this.getUnlocalizedName());
+}
+</pre>
+<p>To the block's class:</p>
+<pre class="brush: java;">
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        this.blockIcon = iconRegister.registerIcon("GenericMod:"+this.getUnlocalizedName());
+    }
+</pre>
+<p>Basically, the mods folder has been renamed to assets. The file path is now mcp/src/minecraft/assets/epic.zirc/textures/blocks|items/[unlocalizedname].<br>At the beginning, add item. to the name or tile. for a block.</p>
+<p>Also, the unlocalized name of an item is also prefixed by item., and maybe tile. for blocks?</p>
+<pre class="brush: java;">
+//private static final ResourceLocation field_test = new ResourceLocation("Your texture URL here");
+</pre>
+</div>
+</div>
+<div class="footer">
+	by epicfaace &bullet; <a href="https://docs.google.com/document/d/1rY9pEgJ2lKfEUFcIQvWNSgtd-TR1_TEaS2KbydAyH0M/pub">Original Google Docs Tutorial</a>
+</div>
+</body>
+</html>

@@ -17,7 +17,7 @@
 	font-style: normal;
 }
 
-p,ul {
+p,ul,p a {
 	font-family:"Open Sans","Verdana";
 }
 
@@ -51,8 +51,8 @@ border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADg
 -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANUlEQVQIW2NkYGBgQ8JAJsMvEGYEEjxQzA0SBYKvQPwFJCEExIJAfBcqoQyk3+OVwGkUVssBP4wMT0ZBZV0AAAAASUVORK5CYII=) 2 / 2px repeat;
 border-width: 2px;
 padding: 20px 70px;
-max-width: 750px;
-margin: 0px auto;
+max-width: 900px;
+margin: 20px auto;
 position: relative;
 }
 
