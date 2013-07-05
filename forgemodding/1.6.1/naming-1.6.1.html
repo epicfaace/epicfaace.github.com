@@ -15,14 +15,9 @@
 <div style="width:100%;">
 <div class="item">
 <h2>Readable Names</h2>
-<p>Also, the unlocalized name of an item is also prefixed by item., and maybe tile. for blocks?</p>
-<p>Adding readable names is no longer in the @Init. And the @Init itself is deprecated...</p>
-<p>In the mod file:</p>
+<p>In the @Init:</p>
 <pre class="brush: java;">
-private static void languageRegisters()
-{
-	LanguageRegistry.addName(theBlock, "\u00A74 In-game name ");
-}
+LanguageRegistry.addName(theBlock, "\u00A74 In-game name ");
 </pre>
 <p>To make it colored:</p>
 <pre>
