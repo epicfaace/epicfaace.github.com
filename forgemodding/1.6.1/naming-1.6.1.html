@@ -11,18 +11,48 @@
 </head>
 <body>
 <h1><a href="..">Minecraft Forge Tutorials:</a></h1>
-<h1>Textures - 1.6.1</h1>
+<h1>Naming - 1.6.1</h1>
 <div style="width:100%;">
 <div class="item">
-<h2>Block/Item Icons</h2>
-<p>Add this to the item's class:</p>
+<h2>Readable Names</h2>
+<p>Also, the unlocalized name of an item is also prefixed by item., and maybe tile. for blocks?</p>
+<p>Adding readable names is no longer in the @Init. And the @Init itself is deprecated...</p>
+<p>In the mod file:</p>
 <pre class="brush: java;">
-public void registerIcons(IconRegister iconRegister)
+private static void languageRegisters()
 {
-	this.itemIcon = iconRegister.registerIcon("GenericMod:"+this.getUnlocalizedName());
+	LanguageRegistry.addName(theBlock, "\u00A74 In-game name ");
 }
 </pre>
-<p>To the block's class:</p>
+<p>To make it colored:</p>
+<pre>
+0 - Black
+1 - Dark Blue
+2 - Dark Green
+3 - Dark Aqua/Cyan
+4 - Dark Red
+5 - Purple
+6 - Gold/Dark Yellow
+7 - Gray
+8 - Dark Gray
+9 - Blue
+a - Green
+b - Aqua/Cyan
+c - Red
+d - Light Purple/Pink
+e - Yellow
+f - White
+
+Format Code - 
+
+k - "Magic"
+l - Bold
+m - Strikethrough
+n - Underline
+o - Italic
+r - Reset
+</pre>
+<!--
 <pre class="brush: java;">
     @Override
     public void registerIcons(IconRegister iconRegister) {
@@ -31,6 +61,10 @@ public void registerIcons(IconRegister iconRegister)
 </pre>
 <p>Basically, the mods folder has been renamed to assets. The file path is now mcp/src/minecraft/assets/epic.zirc/textures/blocks|items/[unlocalizedname].<br>At the beginning, add item. to the name or tile. for a block.</p>
 <p>Also, the unlocalized name of an item is also prefixed by item., and maybe tile. for blocks?</p>
+<pre class="brush: java;">
+//private static final ResourceLocation field_test = new ResourceLocation("Your texture URL here");
+</pre>
+-->
 </div>
 </div>
 <div class="footer">
