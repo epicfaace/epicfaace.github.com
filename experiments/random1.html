@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Randomness!</title>
+</head>
+<body>
+	<canvas id="canvas" width="800px" height="400px">Sorry, canvas is not working.</canvas>
+	<input type="range" min="1" max="500" onchange="draw(this.value)">
+	<script>
+	var c=document.getElementById("canvas");
+	var ctx=c.getContext("2d");
+	function draw(wid) {
+		c.width=c.width;
+		wid=parseInt(wid);
+		wid=Math.pow(10,.005*wid);
+		ctx.beginPath();
+		//ctx.moveTo(0,Math.random()*c.height);
+		for (var i=0;i<=c.width;i+=wid)
+		{
+			var y=Math.random()*c.height;
+			ctx.lineTo(i,y);
+			ctx.closePath();
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.moveTo(i,y);
+		}
+		//ctx.lineTo(c.width,Math.random()*c.height);
+		ctx.stroke();
+	}
+	draw(10);
+	</script>
+</body>
