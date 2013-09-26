@@ -5,8 +5,10 @@
 	<title>Randomness!</title>
 </head>
 <body>
-	<canvas id="canvas" width="800px" height="400px">Sorry, canvas is not working.</canvas>
-	<input type="range" min="1" max="500" onchange="draw(this.value)">
+	<div>
+		<canvas id="canvas" width="800px" height="400px">Sorry, canvas is not working.</canvas>
+		<input type="range" min="1" max="500" onchange="draw(this.value)">
+	</div>
 	<script>
 	var c=document.getElementById("canvas");
 	var ctx=c.getContext("2d");

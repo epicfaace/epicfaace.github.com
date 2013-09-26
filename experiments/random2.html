@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>More Randomness!</title>
+</head>
+<body>
+	<div>
+		<canvas id="canvas" width="800px" height="500px">Sorry, canvas is not working.</canvas>
+	</div>
+	<script>
+		clicking=false;
+		var c=document.getElementById("canvas");
+		var ctx=c.getContext("2d");
+		startX=c.width/2,startY=0;
+		render();
+		function render() {
+			c.width=c.width;
+			ctx.strokeStyle="rgba(255,0,0,.15)";
+			ctx.beginPath();
+			ctx.moveTo(startX,startY);
+			for (var i=0;i<=360;i++) {
+				ctx.lineTo(Math.cos(i)*50+c.width/2,Math.sin(i)*50+c.height/2);
+				ctx.moveTo(startX,startY);
+			}
+			ctx.closePath();
+			ctx.stroke();
+		}
+		document.onmousedown=function() {
+			clicking=true;
+		}
+		document.onmouseup=function() {
+			clicking=false;
+		}
+		document.onmousemove=function(e) {
+		    if (!clicking) return;
+		    var mouseX, mouseY;
+
+		    if(e.offsetX) {
+		        mouseX = e.offsetX;
+		        mouseY = e.offsetY;
+		    }
+		    else if(e.layerX) {
+		        mouseX = e.layerX;
+		        mouseY = e.layerY;
+		    }
+		    startX=mouseX;
+		    startY=mouseY;
+		    render();
+		}
+	</script>
+</body>
