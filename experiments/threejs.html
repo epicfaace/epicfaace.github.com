@@ -4,6 +4,7 @@
         <script src="../scripts/three.min.js"></script>
     </head>
     <body>
+    	<input type="range" min="0" max="6" value="0" onchange="makeCube(this.value)">
         <script>
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -11,11 +12,30 @@
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
+			var cube;
 
-			var geometry = new THREE.TetrahedronGeometry(2,1);
-			var material = new THREE.MeshBasicMaterial({color: 0xaa6633,wireframe:true});
-			var cube = new THREE.Mesh(geometry, material);
-			scene.add(cube);
+			function makeCube(n) {
+				scene.remove(cube);
+				var geometry = new THREE.TetrahedronGeometry(2,n);
+				for ( var i = 0; i < geometry.faces.length; i ++ ) {
+				    //geometry.faces[ i ].color.setHex( /*Math.random() * 0xffffff*/ Math.floor((Math.random()*0xffffff)) );
+//geometry.faces[ i ].color.setHex( generateRandomColor([255,255,255]) );
+//geometry.faces[ i ].color.setHex( fnGetRandomColour(5,30) ); //For pastel, pass in higher luma dark/light integers - ie fnGetRandomColour(120, 250)
+var j=0; //brightness range: 0 to 4 (decim.)
+var k=2; //darkness range: 1 to 10 (decim.)
+var t= new Date();
+geometry.faces[ i ].color.setRGB(
+	(256/Math.floor(Math.random(t.getTime())*256)+j)/k,
+	(256/Math.floor(Math.random(t.getTime())*256)+j)/k,
+	(256/Math.floor(Math.random(t.getTime())*256)+j)/k
+	);
+
+				}
+				var material = new THREE.MeshBasicMaterial({color: 0xaa6633,wireframe:false, vertexColors: THREE.FaceColors});
+				cube = new THREE.Mesh(geometry, material);
+				scene.add(cube);
+			}
+			makeCube(0);
 
 			camera.position.z = 5;
 
@@ -29,6 +49,41 @@
 			};
 
 			render();
+
+function generateRandomColor(mix) {
+	var b=[0,0,0];
+    var red = Math.floor((Math.random()*(255-b[0]))+b[0]);
+    var green = Math.floor((Math.random()*(255-b[1]))+b[1]);
+    var blue = Math.floor((Math.random()*(255-b[2]))+b[2]);
+    //console.log(red,green,blue);
+    // mix the color
+    if (mix != null) {
+        red = Math.floor((red + mix[0]) / 2);
+        green = Math.floor((green + mix[1]) / 2);
+        blue = Math.floor((blue + mix[2]) / 2);
+    }
+    else {return 0xFFFFF;}
+    return blue+green*16*16+red*16*16*16*16;
+}
+function fnGetRandomColour(iDarkLuma, iLightLuma) 
+{       
+  for (var i=0;i<20;i++)
+  {
+    //var sColour = ('ffffff' + Math.floor(Math.random() * 0xFFFFFF).toString(16)).substr(-6);
+    var sColour = Math.floor(Math.random() * 0xFFFFFF);
+
+    var rgb = parseInt(sColour, 16);   // convert rrggbb to decimal
+    var r = (rgb >> 16) & 0xff;  // extract red
+    var g = (rgb >>  8) & 0xff;  // extract green
+    var b = (rgb >>  0) & 0xff;  // extract blue
+
+    var iLuma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+
+    if (iLuma > iDarkLuma && iLuma < iLightLuma) return sColour;
+  }
+  console.log('failed');
+  return sColour;
+} 
         </script>
     </body>
 </html>
