@@ -6,11 +6,32 @@
 	<script src="qset.js"></script>
 	<style>
 	html,body {height:100%;}
-	#question {
+	body {
+		font-family:"Droid Sans";
+	}
+	div#question {
 		width:80%;
-		height:40%;
-		border:2px solid grey;
+		max-width:800px;
+		height:60%;
+		border:2px solid gray;
 		overflow: auto;
+	}
+	form#ansForm {
+		height:10%;
+		margin-top:5%;
+	}
+	form#ansForm > * {
+		height:100%;
+		max-height:30px;
+	}
+	form#ansForm input#answer {
+		width:40%;
+	}
+	form#ansForm input#submitBtn {
+		width:15%;
+	}
+	form#ansForm span#wrong {
+		width:45%;
 	}
 	</style>
 </head>
@@ -18,29 +39,57 @@
 	<div id="question"></div>
 	<form id="ansForm">
 		<input type="text" id="answer">
-		<input type="button" value="Submit" id="submit">
+		<input type="submit" id="submitBtn">
+		<span id="wrong">Hey</span>
 	</form>
 	<script>
 		$(function() {
+			q=-1;
+			wrongElem=null; //if waiting to proceed to next question (if true, reading all the answers)
 			parse();
+			nextQ();
 		});
 		window.parse=function() {
 			for (j in qsetorig) {
 				var jdef=qsetorig[j].def;
 				if (jdef[jdef.length-1]==".") qsetorig[j].def=jdef.substr(0,jdef.length-1);
 				qsetorig[j].def=qsetorig[j].def.split(".");
-				//qsetorig[j].def=(qsetorig[j].def[qsetorig[j].def.length]) ? qsetorig[j].def : qsetorig[j].def.pop();
 			}
+			window.curset=qsetorig;
 			//JSON.parse()
-			$("#question").text(JSON.stringify(qsetorig));
+			//$("#question").text(JSON.stringify(qsetorig));
 		};
 		function nextQ(list) {
-			var q = curset[Math.floor(Math.random()*curset.length)];
-			$("#question").text(q.def[Math.floor(Math.random()*q.def.length)]);
+			wrongElem=null;
+			$("#wrong").text("");
+			$("#answer").val("");
+			prevQ=q; //ensures that same question doesn't come up twice in a row
+			while (q==prevQ) {
+				q = Math.floor(Math.random()*curset.length)
+			}
+			n = Math.floor(Math.random()*curset[q].def.length);
+			$("#question").text(curset[q].def[n]);
+		}
+		function qAns(answer) {
+			$("#wrong").text(curset[q].term);
+			wrongElem=curset[q].def.splice(n,1); //actually not always wrong; just the definition in which you answered
+			$("#question").append("<br><br>"+curset[q].def.join(".<br><br>"));
+			if (answer.toLowerCase()==curset[q].term.toLowerCase()) {
+				$("#wrong").css("color","#009900")
+			}
+			else {
+				$("#wrong").css("color","#990000");
+				curset[q].def.push(wrongElem);
+			}
 		}
 		$("#ansForm").submit(function(e) {
 			e.preventDefault();
-			console.log(e);
+			if (wrongElem) {
+				wrongElem=null;
+				nextQ();
+				return;
+			}
+			qAns($("#answer").val().trim());
 		});
 	</script>
 </body>
