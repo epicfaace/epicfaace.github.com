@@ -2,8 +2,27 @@
 <html>
 <head>
 	<title>Quiz</title>
-	<script src="./scripts/jquery.min.js"></script>
+	<script src="../scripts/jquery.min.js"></script>
+	<script src="qset.js"></script>
+	<style>
+	html,body {height:100%;}
+	#question {
+		width:50%;
+		height:40%;
+		border:2px solid grey;
+	}
+	</style>
 </head>
 <body>
-
+	<div id="question"></div>
+	<form id="ansForm">
+		<input type="text" id="answer">
+		<input type="button" value="Submit" id="submit">
+	</form>
+	<script>
+		$("#ansForm").submit(function(e) {
+			e.preventDefault();
+			console.log(e);
+		});
+	</script>
 </body>
