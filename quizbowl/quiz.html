@@ -7,9 +7,10 @@
 	<style>
 	html,body {height:100%;}
 	#question {
-		width:50%;
+		width:80%;
 		height:40%;
 		border:2px solid grey;
+		overflow: auto;
 	}
 	</style>
 </head>
@@ -20,6 +21,23 @@
 		<input type="button" value="Submit" id="submit">
 	</form>
 	<script>
+		$(function() {
+			parse();
+		});
+		window.parse=function() {
+			for (j in qsetorig) {
+				var jdef=qsetorig[j].def;
+				if (jdef[jdef.length-1]==".") qsetorig[j].def=jdef.substr(0,jdef.length-1);
+				qsetorig[j].def=qsetorig[j].def.split(".");
+				//qsetorig[j].def=(qsetorig[j].def[qsetorig[j].def.length]) ? qsetorig[j].def : qsetorig[j].def.pop();
+			}
+			//JSON.parse()
+			$("#question").text(JSON.stringify(qsetorig));
+		};
+		function nextQ(list) {
+			var q = curset[Math.floor(Math.random()*curset.length)];
+			$("#question").text(q.def[Math.floor(Math.random()*q.def.length)]);
+		}
 		$("#ansForm").submit(function(e) {
 			e.preventDefault();
 			console.log(e);
