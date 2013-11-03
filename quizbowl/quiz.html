@@ -50,11 +50,14 @@
 			nextQ();
 		});
 		window.parse=function() {
+			window.curdel=[]; //mastered terms; deleted from the set
 			for (j in qsetorig) {
+				curdel[j]={"term":qsetorig[j].term,"def":[]};
 				var jdef=qsetorig[j].def;
 				if (jdef[jdef.length-1]==".") qsetorig[j].def=jdef.substr(0,jdef.length-1);
 				qsetorig[j].def=qsetorig[j].def.split(".");
 			}
+			console.log(curdel);
 			window.curset=qsetorig;
 			//JSON.parse()
 			//$("#question").text(JSON.stringify(qsetorig));
@@ -68,14 +71,16 @@
 				q = Math.floor(Math.random()*curset.length)
 			}
 			n = Math.floor(Math.random()*curset[q].def.length);
+			if (curset[q].def.length==0) nextQ();
 			$("#question").text(curset[q].def[n]);
 		}
 		function qAns(answer) {
 			$("#wrong").text(curset[q].term);
 			wrongElem=curset[q].def.splice(n,1); //actually not always wrong; just the definition in which you answered
-			$("#question").append("<br><br>"+curset[q].def.join(".<br><br>"));
+			$("#question").append("<br><br>"+curset[q].def.join(".<br><br>")+"<hr>"+curdel[q].def.join(".<br><br>"));
 			if (answer.toLowerCase()==curset[q].term.toLowerCase()) {
-				$("#wrong").css("color","#009900")
+				$("#wrong").css("color","#009900");
+				curdel[q].def.push(wrongElem);
 			}
 			else {
 				$("#wrong").css("color","#990000");
