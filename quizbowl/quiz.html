@@ -33,22 +33,59 @@
 	form#ansForm span#wrong {
 		width:45%;
 	}
+	div#left {
+		height:100%;
+		width:80%;
+		float:left;
+	}
+	div#right {
+		float:right;
+		height:100%;
+		width:20%;
+		max-width:200px;
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
 	</style>
 </head>
 <body>
-	<div id="question"></div>
-	<form id="ansForm">
-		<input type="text" id="answer">
-		<input type="submit" id="submitBtn">
-		<span id="wrong">Hey</span>
-	</form>
+	<div id="left">
+		<div id="question"></div>
+		<form id="ansForm">
+			<input type="text" id="answer">
+			<input type="submit" id="submitBtn">
+			<span id="wrong">Hey</span>
+		</form>
+	</div>
+	<div id="right">
+		Stuff:<br>
+	</div>
 	<script>
 		$(function() {
+			for (i in allsets) {
+				$("<a class='button' href='javascript:void(0)' data-i='"+i+"'>"+allsets[i].setName+"</a><br>").appendTo("div#right");
+			}
+			$("#ansForm").submit(function(e) {
+				e.preventDefault();
+				if (wrongElem) {
+					wrongElem=null;
+					nextQ();
+					return;
+				}
+				qAns($("#answer").val().trim());
+			});
+			$("a.button").click(function(e) {
+				e.preventDefault();
+				init(allsets[$(this).attr("data-i")].def);
+			});
+		});
+		function init(s) {
+			window.qsetorig=s;
 			q=-1;
 			wrongElem=null; //if waiting to proceed to next question (if true, reading all the answers)
 			parse();
 			nextQ();
-		});
+		}
 		window.parse=function() {
 			window.curdel=[]; //mastered terms; deleted from the set
 			for (j in qsetorig) {
@@ -87,14 +124,5 @@
 				curset[q].def.push(wrongElem);
 			}
 		}
-		$("#ansForm").submit(function(e) {
-			e.preventDefault();
-			if (wrongElem) {
-				wrongElem=null;
-				nextQ();
-				return;
-			}
-			qAns($("#answer").val().trim());
-		});
 	</script>
 </body>
