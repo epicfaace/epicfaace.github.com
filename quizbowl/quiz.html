@@ -106,7 +106,8 @@
 			$("#wrong").text("");
 			$("#answer").val("");
 			prevQ=q;
-			while (q==prevQ||Math.random()>.8) { //ensures that same question doesn't come up twice in a row 80% of the time
+			prevN=n;
+			while (q==prevQ||Math.random()>.9) { //ensures that same question doesn't come up twice in a row 90% of the time
 				q = Math.floor(Math.random()*curset.length)
 			}
 			n = Math.floor(Math.random()*curset[q].def.length);
