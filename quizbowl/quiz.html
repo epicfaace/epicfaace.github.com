@@ -4,6 +4,7 @@
 	<title>Quiz</title>
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="qset.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 	<style>
 	html,body {height:100%;}
 	body {
@@ -12,10 +13,12 @@
 	div#question {
 		width:80%;
 		max-width:800px;
+		max-height:350px;
 		height:60%;
 		border:2px solid gray;
-		overflow: auto;
 		padding:1%;
+		overflow-y:auto;
+		overflow-x:hidden;
 	}
 	form#ansForm {
 		height:10%;
