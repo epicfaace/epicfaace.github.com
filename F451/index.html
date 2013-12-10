@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fahrenheit 451 Review</title>
+	<script src="jquery.min.js"></script>
+	<style>
+		canvas {
+			border:1px solid black;
+			margin:auto;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="can" width="640" height="480">Canvas is not working.</canvas>
+	<script>
+		window.c=document.getElementById("can");
+		window.ctx=c.getContext("2d");
+		window.started=false;
+		document.onkeydown=checkKey;
+		window.img={};
+		window.player={"touching":false,"xvel":0,"speed":2.5,"yvel":0};
+		window.scroll={"x":0,"min":0,"max":6};
+		window.question=false;
+		window.answering=false;
+		window.score=0;
+		window.won=false;
+		window.questionsorig=[
+			{q:"What surprising thing does Beatty do when they return from burning a house?",a:["He recalls from which book the woman in the burning house said the quote from.","He compliments Montag.","He says that he used to love to read, and talks about his history as a fireman."]},
+			{q:"What is the Hound\'s reaction when Montag touches it?",a:["It growls at him suspiciously.","It doesn't do anything.","It tries to attack him with its needle."]},
+			{q:"According to Faber, why were the firemen established?",a:["The public lost interest in books by their own accord.","The government wanted to suppress any opposition.","The government thought books were too contradictory."]},
+			{q:"What poem does Montag read to Mildred\'s friends?",a:["Dover Beach","The Road Not Taken","The Raven"]},
+			{q:"How does Mrs. Phelps react when Montag reads her a poem?",a:["She cries.","She gets angry.","She ignores him."]},
+			{q:"Why does Faber compare himself to a \'queen bee\'?",a:["He stays safe at home while Montag does the dangerous work.","He is an intellectual, and therefore a leader of society.","He feels as wise and old as a queen bee."]},
+			{q:"What does Beatty show when Montag returns to the firehouse after being with Faber?",a:["He is actually well-read.","He has forgiven Montag.","He doesn\'t care whether books burn or not."]},
+			{q:"What are televisions in Montag's society called?",a:["Parlors","TVs","Realities"]},
+			{q:"Why does Granger mention a phoenix at the end of the book?",a:["He shows how mankind can learn from its mistakes after destroying itself.","The phoenix is the only memory he has of his grandfather.","Unlike books, phoenixes are immune to fire."]},
+			{q:"Why do Granger and his companions burn books, too?",a:["They memorize the books instead so nothing is found on them.","They don\'t like books, just like the firemen.","They are afraid of being caught by the government, so don\'t read any books at all."]},
+			{q:"What does Denham\'s Dentrifice symbolize?",a:["Forcing people not to think and to always do something","A famous, futuristic brand of toothpaste","The people who want to stop Montag from reading on the train"]},
+			{q:"What does the fact that the government killed an innocent pedestrian in Montag\'s place show?",a:["It cares more about providing entertainment than the life of a person.","It really hates Montag.","It likes Montag so intentionally let him escape."]},
+			{q:"What was different about the fire Montag saw after leaving the river?",a:["It gave rather than destroyed.","It was smaller than the fires he was used to.","It wasn\'t different; fire is fire."]},
+			{q:"What do the railroad tracks symbolize to Montag?",a:["A path towards a new life and freedom which he can hold on to","Somewhere good because Clarisse has walked there","Human achievement, by having it in a remote forest"]},
+			{q:"Why does Faber decide to go to St. Louis?",a:["He knows of a retired printer there who can help him make more copies of the Bible.","He wants to take a vacation away from the \'parlors.\'","He wants to escape from the bombers who are going to destroy the cities."]},
+			{q:"What did Faber see that made his fear go away when Montag came to his house?",a:["Montag had a book in his hand.","There was no one else with Montag.","Faber recognized Montag, who was his close friend."]},
+			{q:"What is unusual about the way Mildred told Montag about Clarisse?",a:["She is indifferent and matter-of-fact about the death.","She is happy that there is no one left to confuse Montag.","She is so sad that she pauses her TV-parlor."]},
+			{q:"What is unusual about how the Emergency Hospital men treat Mildred?",a:["They use machines and treat the job as routine.","They treat her with disrespect.","They arrive late and do a lousy job."]},
+			{q:"Why does Montag kill Beatty?",a:["He has no choice because Beatty is going to arrest him anyway.","Montag gets angry that he has to burn his own house.","He reads in a book that killing people is okay."]},
+			{q:"What is an important message said by Granger\'s grandfather?",a:["Everyone must leave something behind, or a mark on the world, in their lives.","Memorizing books is easy and good for the mind.","Books should not be outlawed and are a good source of information."]},//20
+		];
+		window.questions=questionsorig;
+		img.dog = {'right':new Image(),'left':new Image()};
+		img.dog.right.src="Dog_robot_right.png";
+		img.dog.left.src="Dog_robot_left.png";
+		img.dog.y=c.height-70;
+		img.dog.x=0;
+		img.montag = new Image();
+		img.montag.src="montag.png";
+		img.terrain = new Image();
+		img.terrain.src="Swampy_forest_panorama.jpg";
+		img.terrain2=img.terrain;
+		img.arrow=new Image();
+		img.arrow.src="arrow.png";
+		img.bookBurn = new Image();
+		img.bookBurn.src="book-burning.jpg";
+		$(function() {
+			ctx.fillStyle="rgba(100,120,180,.2)";
+			ctx.fillRect(0,0,640,480);
+			ctx.font="35px Lucida Console";
+			ctx.textAlign="center";
+			ctx.fillText("Loading images...",320,180);
+		});
+		img.bookBurn.onload=function() {
+			c.width=c.width;
+			ctx.fillStyle="rgba(100,120,180,.2)";
+			ctx.fillRect(0,0,640,480);
+			ctx.fillStyle="black";
+			ctx.textAlign="center";
+			ctx.font="bold 30px Lucida Console";
+			ctx.fillText("Fahrenheit 451 Review Game",320,100);
+			ctx.font="20px Lucida Console";
+			ctx.fillText("By: Ashwin Ramaswami",320,150);
+			ctx.font="14px Lucida Console";
+			ctx.fillText("Use the arrow keys to move.",320,180);
+			ctx.textAlign="center";
+			ctx.drawImage(img.bookBurn,(640-313)/2,230,313,218);
+			ctx.fillStyle="rgb(40,190,200)";
+			ctx.strokeStyle="rgb(0,0,0)";
+			ctx.lineWidth=2;
+			ctx.font="bold 25px Lucida Console";
+			ctx.strokeText("Click to Begin!",320,230+218/2);
+			ctx.fillText("Click to Begin!",320,230+218/2);
+			c.addEventListener('click', function(evt) {
+				var mousePos = getMousePos(c, evt);
+				var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+				if (started==false) {
+					started=true;
+					this.removeEventListener('click',arguments.callee,false);
+					start(0);
+				}
+			}, false);
+		}
+		function start(txt) {
+			c.width=c.width;
+			ctx.drawImage(img.terrain,0,0);
+			ctx.drawImage(img.montag,c.width/2-50,c.height-150,50,100);
+			player.xpos=c.width/2-50;
+			player.ypos=c.height-150;
+			ctx.fillStyle="#FFFFFF";
+			ctx.textAlign="center";
+			ctx.font="20px Lucida Console";
+			if (txt==0) {
+				setTimeout('ctx.fillText("Yay, I\'m safe in the forest...",c.width/2+50,c.height-180);setTimeout(\'start(1);\',1000);',1000);
+			}
+			else if (txt==1) {
+				ctx.drawImage(img.dog.right,0,c.height-70,70,70);
+				setTimeout('ctx.fillText("Oh no! It\'s the Hound!",c.width/2+50,c.height-180);setTimeout(\'start(2);\',1000);',1000);
+			}
+			else if (txt==2) {
+				ctx.drawImage(img.dog.right,0,c.height-140,140,140);
+				ctx.textAlign="left";
+				ctx.font="50px Lucida Console";
+				ctx.fillText("GROWL!!!",50,c.height-180);
+				setInterval("setInterval(draw,10)",1000);
+			}
+		}
+		function draw() {
+			if (won) return;
+			if (!question) {
+				c.width=c.width;
+				if (-scroll.x>=scroll.min&&scroll.x-player.xvel<0) {
+						scroll.x-=player.xvel;
+					}
+				else {
+					player.xvel=0;
+				}
+				ctx.drawImage(img.terrain,scroll.x,0);
+				if (-scroll.x+640>img.terrain.width) {
+					if (-scroll.x+640<img.terrain.width+c.width) {
+						ctx.drawImage(img.terrain2,img.terrain.width+scroll.x,0);
+						ctx.textAlign="center";
+						ctx.font="50px Lucida Console";
+						ctx.fillStyle="#FF0000";
+						ctx.fillText("FORK!",img.terrain.width+scroll.x,50);
+						if (img.terrain.width+scroll.x<=c.width/2) {
+							question=true;
+							if (questions.length==0) {won=true;winGame();return;}
+							var ra=Math.floor(Math.random() * questions.length);
+							window.curQ=questions[ra];
+							questions.splice(ra,1);
+							curQ.ans=Math.floor(Math.random() * 3);//which index in rand .aa is the answer?
+							curQ.aa=[0,0,0]; //curQ.aa is randomized version of curQ.a
+							curQ.aa[curQ.ans]=curQ.a[0]; //first index in .a is correct answer
+							var r=curQ.ans;
+							while (r==curQ.ans) {r=Math.floor(Math.random() * 3);}
+							curQ.aa[r]=curQ.a[1];
+							var s=3-r-curQ.ans; //0+1+2=3
+							curQ.aa[s]=curQ.a[2];
+							//console.log(curQ.ans,r,s);
+							renderQ();
+						}
+						else {question=false;}
+					}
+					else {
+						scroll.x=scroll.x+img.terrain.width;
+						question=false;
+					}
+				}
+				else {question=false;}
+				img.dog.y+=Math.random()*2-1;
+				img.dog.x+=Math.random()*2-1;
+				if (img.dog.y>c.height-60)	img.dog.y-=20;
+				if (img.dog.x>c.width/2-120)	img.dog.x-=20;
+				if (img.dog.x<0)	img.dog.x+=20;
+				if (img.dog.y<0)	img.dog.y+=20;
+				ctx.drawImage(img.dog.right,img.dog.x,img.dog.y,70,70);
+				ctx.drawImage(img.montag,c.width/2-50,c.height-150,50,100);
+			}
+			else if (!answering) {//if question is true
+				c.width=c.width;
+				if (player.xpos+player.xvel>0&&player.xpos+player.xvel<c.width-40) player.xpos+=player.xvel;
+				ctx.drawImage(img.terrain,scroll.x,0);
+				ctx.drawImage(img.terrain2,img.terrain.width+scroll.x,0);
+				renderQ();
+				ctx.drawImage(img.montag,player.xpos,c.height-150,50,100);
+			}
+			player.xvel*=.92;
+		}
+		function getMousePos(canvas, evt) {
+			var rect = c.getBoundingClientRect();
+			return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
+		}
+		function checkKey(e) {
+			e = e||window.event;
+			if (e.keyCode=='38'&&question) {//up
+				answer();
+			}
+			else if (e.keyCode=='40') {//down
+
+			}
+			else if (e.keyCode=='37') {//left
+				player.xvel-=player.speed;
+			}
+			else if (e.keyCode=='39') {//right
+				player.xvel+=player.speed;
+			}
+		}
+		function renderQ() {
+			ctx.lineWidth=1;
+			ctx.textAlign="center";
+			ctx.font="50px Lucida Console";
+			ctx.fillStyle="#FF0000";
+			ctx.fillText("FORK!",img.terrain.width+scroll.x,50);
+			ctx.font="bold 13px Lucida Console";
+			ctx.fillText("Go in the correct direction to proceed (up arrow).",img.terrain.width+scroll.x,70);
+			ctx.fillStyle="#bfbfbf";
+			ctx.strokeStyle="#000000";
+			ctx.fillRect(10,80,c.width-20,60);
+			ctx.strokeRect(10,80,c.width-20,60);
+			ctx.drawImage(img.arrow,90,160,70,70);
+			ctx.fillRect(30,250,180,110);
+			ctx.strokeRect(30,250,180,110);
+			ctx.drawImage(img.arrow,c.width/2-10,160,70,70);
+			ctx.fillRect(c.width/2-80,250,180,110);
+			ctx.strokeRect(c.width/2-80,250,180,110);
+			ctx.drawImage(img.arrow,c.width-150,160,70,70);
+			ctx.fillRect(c.width-200,250,180,110);
+			ctx.strokeRect(c.width-200,250,180,110);
+			ctx.fillStyle="#3355aa";
+			wrapText(curQ.q,img.terrain.width+scroll.x,100,c.width-20,25);
+			ctx.font="13px Lucida Console";
+			wrapText(curQ.aa[0],125,280,180,14);
+			wrapText(curQ.aa[1],c.width/2+15,280,180,14);
+			wrapText(curQ.aa[2],c.width-105,280,180,14);
+		}
+		function answer() {
+			answering=true;
+			var ans;
+			if (player.xpos>=c.width-230) ans=2; //right
+			else if (player.xpos>=c.width/2-100) ans=1; //middle
+			else ans=0; //left
+			ctx.lineWidth=3;
+			if (curQ.ans==0) {
+				ctx.strokeStyle="#00aa00";
+				ctx.strokeRect(30,250,180,110);
+				ctx.strokeStyle="#aa0000";
+				ctx.strokeRect(c.width/2-80,250,180,110);
+				ctx.strokeRect(c.width-200,250,180,110);
+			}
+			else if (curQ.ans==1) {
+				ctx.strokeStyle="#00aa00";
+				ctx.strokeRect(c.width/2-80,250,180,110);
+				ctx.strokeStyle="#aa0000";
+				ctx.strokeRect(30,250,180,110);
+				ctx.strokeRect(c.width-200,250,180,110);
+			}
+			else if (curQ.ans==2) {
+				ctx.strokeStyle="#00aa00";
+				ctx.strokeRect(c.width-200,250,180,110);
+				ctx.strokeStyle="#aa0000";
+				ctx.strokeRect(30,250,180,110);
+				ctx.strokeRect(c.width/2-80,250,180,110);
+			}
+			ctx.drawImage(img.montag,player.xpos,c.height-150,50,100);
+			ctx.font="bold 20px Lucida Console";
+			if (ans==curQ.ans) {
+				ctx.fillStyle="#00ee00";
+				ctx.fillText("Yay! You're correct!",320,c.height-60);
+				score+=10;
+				setTimeout("scroll.x=0;player.xpos=c.width/2-50;question=false;answering=false;",1000);
+			}
+			else {
+				ctx.fillStyle="#ee0000";
+				ctx.fillText("Wrong. You are doomed by the Hound.",320,c.height-60);
+				window.siz=70;
+				window.sizInt=setInterval("ctx.drawImage(img.dog.right,0,c.height-siz,siz,siz);siz+=.8;if (siz>=500) {clearInterval(sizInt);endGame();}",10);
+			}
+		}
+		function endGame() {
+			ctx.fillStyle="#FFFFFF";
+			ctx.font="bold 60px Lucida Console";
+			ctx.fillText("YOU LOSE!!!",320,100);
+			ctx.fillText("SCORE:"+score,320,250);
+			ctx.font="bold 20px Lucida Console";
+			ctx.fillText("Click to play again.",320,350);
+			c.addEventListener('click', function(evt) {
+				scroll.x=0;player.xpos=c.width/2-50;question=false;answering=false;score=0;questions=questionsorig;
+				this.removeEventListener('click',arguments.callee,false);
+			}, false);
+		}
+		function winGame() {
+			ctx.drawImage(img.terrain,scroll.x,0);
+			ctx.drawImage(img.terrain2,img.terrain.width+scroll.x,0);
+			ctx.fillStyle="#00FF00";
+			ctx.font="bold 60px Lucida Console";
+			ctx.fillText("YOU WIN!!!",320,100);
+			ctx.fillText("SCORE:"+score,320,250);
+			ctx.font="bold 20px Lucida Console";
+			ctx.fillStyle="#FFFFFF";
+			ctx.fillText("You outran the Hound! Good job!",320,350);
+			ctx.fillText("Click to play again.",320,400);
+			c.addEventListener('click', function(evt) {
+				won=false;scroll.x=0;player.xpos=c.width/2-50;question=false;answering=false;score=0;questions=questionsorig;
+				this.removeEventListener('click',arguments.callee,false);
+			}, false);
+		}
+		function wrapText(text, x, y, maxWidth, lineHeight) {
+		var words = text.split(' ');
+		var line = '';
+
+		for(var n = 0; n < words.length; n++) {
+		  var testLine = line + words[n] + ' ';
+		  var metrics = ctx.measureText(testLine);
+		  var testWidth = metrics.width;
+		  if (testWidth > maxWidth && n > 0) {
+		    ctx.fillText(line, x, y);
+		    line = words[n] + ' ';
+		    y += lineHeight;
+		  }
+		  else {
+		    line = testLine;
+		  }
+		}
+		ctx.fillText(line, x, y);
+		}
+	</script>
+</body>
+</html>
