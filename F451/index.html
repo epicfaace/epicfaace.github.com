@@ -47,7 +47,7 @@
 			{q:"Why does Montag kill Beatty?",a:["He has no choice because Beatty is going to arrest him anyway.","Montag gets angry that he has to burn his own house.","He reads in a book that killing people is okay."]},
 			{q:"What is an important message said by Granger\'s grandfather?",a:["Everyone must leave something behind, or a mark on the world, in their lives.","Memorizing books is easy and good for the mind.","Books should not be outlawed and are a good source of information."]},//20
 		];
-		window.questions=questionsorig;
+		window.questions=questionsorig.concat([]);
 		img.dog = {'right':new Image(),'left':new Image()};
 		img.dog.right.src="Dog_robot_right.png";
 		img.dog.left.src="Dog_robot_left.png";
@@ -283,7 +283,7 @@
 			ctx.font="bold 20px Lucida Console";
 			ctx.fillText("Click to play again.",320,350);
 			c.addEventListener('click', function(evt) {
-				scroll.x=0;player.xpos=c.width/2-50;question=false;answering=false;score=0;questions=questionsorig;
+				reset();
 				this.removeEventListener('click',arguments.callee,false);
 			}, false);
 		}
@@ -299,9 +299,12 @@
 			ctx.fillText("You outran the Hound! Good job!",320,350);
 			ctx.fillText("Click to play again.",320,400);
 			c.addEventListener('click', function(evt) {
-				won=false;scroll.x=0;player.xpos=c.width/2-50;question=false;answering=false;score=0;questions=questionsorig;
+				won=false;reset();
 				this.removeEventListener('click',arguments.callee,false);
 			}, false);
+		}
+		function reset() {
+			scroll.x=0;player.xpos=c.width/2-50;question=false;answering=false;score=0;questions=questionsorig.concat([]);img.dog.y=c.height-70;img.dog.x=0;
 		}
 		function wrapText(text, x, y, maxWidth, lineHeight) {
 		var words = text.split(' ');
