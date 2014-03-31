@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Convert</title>
+<!--script src="../scripts/jquery.min.js"></script-->
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href="../main.css">
+<style>
+body {
+	font-size: 13px;
+	line-height:1.54;
+	margin:0;
+	font-family:'Droid Sans',arial,sans-serif;
+}
+input.num {
+	width:30px;
+}
+textarea#input {
+	width:300px;
+	float:left;
+}
+div#output {
+	width:300px;
+	margin-left:3%;
+	height:200px;
+	overflow:auto;
+	border:1px solid black;
+}
+</style>
+</head>
+<body>
+<h1>Quizlet Converter</h1>
+<div style="width:30%;height:50px;float:left;">
+	Term <input type="text" class="num" id="delim1" value=":"> Def1<input type="text" class="num" id="delim2" value=",">Def2, etc.<input type="text" class="num" id="delim3" value="\n" style="display:none;"><br>
+	<input type="button" value="submit" id="submitBtn" />
+</div>
+<div style="width:60%;height:50px;margin-left:5%;">
+	<strong>Example:</strong><br>
+	<code>
+		Term1<span class="delim1">:</span> Clue1<span class="delim2">,</span> Clue2<span class="delim2">,</span> Clue3...<br>
+		Term2<span class="delim1">:</span> Clue1<span class="delim2">,</span> Clue2<span class="delim2">,</span> Clue3...<br>
+	</code>
+</div>
+<br style="clear:both;">
+<textarea id="input" rows="20" placeholder="Input"></textarea>
+<div id="output">
+	<span style="color:#AAAAAA;">
+		<em>Output text</em><br>
+		Term1:Clue1<br>Term1:Clue2<br>Term1:Clue3<br>
+		Term2:Clue1<br>Term2:Clue2<br>Term2:Clue3<br>
+		...
+	</span>
+</div>
+<script>
+$.fn.selectText = function () {
+    return $(this).each(function (index, el) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(el);
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(el);
+            window.getSelection().addRange(range);
+        }
+    });
+}
+$("input.num").bind("change keyup",function() {
+	$("span."+$(this).attr("id")).html($(this).val());
+});
+$("input#submitBtn").click(function() {
+	x = $("textarea#input").val();
+	$("div#output").html("");
+	//x=$("body").text();
+	//x=localStorage["ngu"];
+	var c = -1;
+	//var delim2=":"; var delim3 = ",";
+	//var delim2="–"; var delim3 = ",";
+	delim2 = $("#delim1").val();
+	delim3 = $("#delim2").val();
+	//delim0 = $("#delim3").val().replace(/\\/g,'\\\\');
+	delim0="\n";
+	var arr = x.split(delim0);
+	for (a in arr) {
+		var A = arr[a];
+		if (A.replace(/ /g,'')=="") continue;
+		c = A.indexOf(delim2);
+		var t = A.substr(0,c);
+		var d = A.substring(c+1).split(delim3);
+		for (i in d) {
+		$("div#output").append(t+":"+d[i]+"<br>");
+		}
+	}
+	$("div#output").click(function() {
+		$(this).selectText();
+	});
+});
+</script>
+</body>
+</html>
