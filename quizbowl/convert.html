@@ -88,7 +88,7 @@ $("input#submitBtn").click(function() {
 		var t = A.substr(0,c);
 		var d = A.substring(c+1).split(delim3);
 		for (i in d) {
-		$("div#output").append(t+":"+d[i]+"<br>");
+		$("div#output").append(t+"\t"+d[i]+"<br>");
 		}
 	}
 	$("div#output").click(function() {

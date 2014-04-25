@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+	<title>Stocks</title>
+	<script src="../scripts/jquery.min.js"></script>
+	<style>
+		#canvas {
+		    border:1px solid black;
+		}
+		#left,#right {
+		    position:absolute;
+		    top:50%;
+		    width:20px;
+		    height:30px;
+		}
+		#left {
+		    left:0px;
+		}
+		#right {
+		    right:0px;
+		}
+	</style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="400"></canvas>
+<div id="left">&lt;&lt;</div>
+<div id="right">&gt;&gt;</div>
+<script>
+$(function() {
+	window.yvals=[];
+	var c = document.getElementById('canvas');
+	c.width=$("body").width();
+	var ctx = c.getContext('2d');
+	var x=3.14;
+	var size=1000;
+	ctx.beginPath();
+	ctx.moveTo(0,c.height-3.14);
+	for (i=0;i<=c.width*size;i++) {
+	    x=Math.pow(x,(x/Math.round(x,0)));
+	    //yvals.push(x);
+	    ctx.lineTo(i/size,c.height-x);
+	}
+	ctx.moveTo(0,c.height-3.14);
+	ctx.closePath();
+	ctx.stroke();
+	$("#left").mouseover(function() {
+	});
+	$("#right").hover(function() {
+	    scrollRight=setInterval("console.log('hi')",100);
+	    },
+	    function() {
+	    clearInterval(scrollRight);                      
+	});
+});
+</script>
+</body>
+</html>
