@@ -69,7 +69,7 @@ $("input.num").bind("change keyup",function() {
 	$("span."+$(this).attr("id")).html($(this).val());
 });
 $("input#submitBtn").click(function() {
-	x = $("textarea#input").val();
+	x = $("textarea#input").val().replace("<","&lt;").replace(">","&gt;");
 	$("div#output").html("");
 	//x=$("body").text();
 	//x=localStorage["ngu"];
