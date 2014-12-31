@@ -32,7 +32,8 @@ div#output {
 <h1>Quizlet Converter</h1>
 <div style="width:30%;height:50px;float:left;">
 	Term <input type="text" class="num" id="delim1" value=":"> Def1<input type="text" class="num" id="delim2" value=",">Def2, etc.<input type="text" class="num" id="delim3" value="\n" style="display:none;"><br>
-	<input type="button" value="submit" id="submitBtn" />
+	<input type="button" value="submit" id="submitBtn" /><br>
+	<input type="checkbox" checked="true" id="checkBox"/>[] stuff
 </div>
 <div style="width:60%;height:50px;margin-left:5%;">
 	<strong>Example:</strong><br>
@@ -85,10 +86,27 @@ $("input#submitBtn").click(function() {
 		var A = arr[a];
 		if (A.replace(/ /g,'')=="") continue;
 		c = A.indexOf(delim2);
-		var t = A.substr(0,c);
-		var d = A.substring(c+1).split(delim3);
-		for (i in d) {
-		$("div#output").append(t+"\t"+d[i]+"<br>");
+		t = A.substr(0,c);
+		d = A.substring(c+1).split(delim3);
+		if ($("#checkBox").is(":checked")) { //puts bracket txt in the term itself
+			for (i in d) {
+				if (~d[i].indexOf("[")&&~d[i].indexOf("]")) {
+					indLeft = d[i].indexOf("[");
+					indRight = d[i].indexOf("]");
+					xtraTerm=" "+d[i].substring(indLeft,indRight+1); //gets text between brackets plus brackets
+					d[i]=d[i].substring(0,indLeft); 
+					console.log(xtraTerm);
+				}
+				else {
+					xtraTerm="";
+				}
+				$("div#output").append(t+xtraTerm+"\t"+d[i]+"<br>");
+			}
+		}
+		else {
+			for (i in d) {
+				$("div#output").append(t+"\t"+d[i]+"<br>");
+			}
 		}
 	}
 	$("div#output").click(function() {
