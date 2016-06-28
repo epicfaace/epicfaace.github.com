@@ -60,6 +60,7 @@ bot2Response = function (err, response) {
   print("Bot 2: "+response);
   bot.ask(response, bot1Response)
 	}
+	("#div").text("");
 	bot1Response("",$("#text").val());
 });
 </script>
