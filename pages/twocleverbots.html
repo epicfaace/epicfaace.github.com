@@ -1,0 +1,67 @@
+<html>
+<head>
+<script src="http://cdn.cleverbot.io/build/1.0/cleverbot.io.min.js"></script>
+<script src="../scripts/jquery.min.js"></script>
+<style>
+* {
+	font-family:Helvetica;
+}
+</style>
+</head>
+<body>
+<h1>Conversations using 2 Cleverbots</h1>
+<h3>Using the <a href="https://cleverbot.io/" target="_blank">Cleverbot.io api</a></h3>
+<input type="text" value="Good morning!" id="text"><input type="submit"  id="submit">
+<div id="div">
+</div>
+<script>
+var bot = new cleverbot("Me8MAXmydRBfODTT", "xCzHcCTp7kMQR40hVPk6df5ukWUMtSWD");
+  var bot2 = new cleverbot("Me8MAXmydRBfODTT", "xCzHcCTp7kMQR40hVPk6df5ukWUMtSWD");
+bot.setNick("bot1")
+bot2.setNick("bot2")
+
+bot.create(function (err, session) {
+  // session is your session name, it will either be as you set it previously, or cleverbot.io will generate one for you
+
+  // Woo, you initialized cleverbot.io.  Insert further code here
+});
+
+
+
+bot2.create(function (err, session) {
+  // session is your session name, it will either be as you set it previously, or cleverbot.io will generate one for you
+});
+
+var bot1Response = function(err, response) {
+print("Bot 1: "+response);
+	bot2.ask(response, bot2Response);
+}
+
+var bot2Response = function (err, response) {
+  print("Bot 2: "+response);
+  bot.ask(response, bot1Response)
+	}
+
+
+
+function print (text) {
+	$("#div").append("<br>"+text);
+}
+
+$("#submit").click(function() {
+	bot2Response = null;
+	bot1Response = null;
+bot1Response = function(err, response) {
+print("Bot 1: "+response);
+	bot2.ask(response, bot2Response);
+}
+
+bot2Response = function (err, response) {
+  print("Bot 2: "+response);
+  bot.ask(response, bot1Response)
+	}
+	bot1Response("",$("#text").val());
+});
+</script>
+</body>
+</html>
