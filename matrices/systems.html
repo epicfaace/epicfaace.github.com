@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src=
-	"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+	"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 	type="text/javascript"></script>
 	<script type="text/x-mathjax-config" id="mathjaxConfig">
 		MathJax.Hub.Config({
@@ -13,12 +15,14 @@
 			}
 			});
 	</script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link href="../main.css" rel="stylesheet" type="text/css">
 	<link href="../math.css" rel="stylesheet" type="text/css">
+
 </head>
-<body>
+<body><div class="container"><div class="row">
 <h0>Systems</h0>
-<div class="topic">
+<div class="topic col-xs-12 col-sm-6">
 	<h1>Cramer's Rule</h1>
 	<div class="content">
 		Cramer's rule is an efficient way of solving systems of 2 and 3+ variables.<sub>todo: add color to diagrams</sub>
@@ -42,7 +46,7 @@
 		</div>
 	</div>
 </div>
-<div class="topic">
+<div class="topic col-xs-12 col-sm-6">
 	<h1>Using Inverses</h1>
 	<div class="content">
 		$$ax+by=e$$
@@ -52,7 +56,7 @@
 		$$\left [ \begin{array}{c}x\\y\end{array} \right]=\left[ \begin{array}{cc}a&b\\c&d\end{array} \right]^{-1}\left [ \begin{array}{c}e\\f\end{array} \right]$$
 	</div>
 </div>
-<div class="topic">
+<div class="topic col-xs-12 col-sm-6">
 	<h1>Reduced Row Echelon Form</h1>
 	<div class="content">
 		Example:
@@ -75,5 +79,7 @@
 		$$\left (\frac{55}{41},\frac{18}{41}\right )$$
 	</div>
 </div>
+
+</div></div>
 </body>
 </html>
