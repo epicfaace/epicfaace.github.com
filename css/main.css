@@ -39,7 +39,8 @@
     color: white;
 }
 .card .img {
-    max-width: 10rem;
+    max-height: 10rem;
+    width: auto;
     margin: auto;
     display: block;
     padding: 10px;
