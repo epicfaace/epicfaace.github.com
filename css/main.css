@@ -40,6 +40,7 @@
 }
 .card .img {
     max-height: 10rem;
+    max-width: 80%;
     width: auto;
     margin: auto;
     display: block;
