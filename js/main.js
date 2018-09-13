@@ -41,11 +41,11 @@ function rainbowArray(n) {
 
 var skills = {
     "HTML5 / CSS3": 10,
-    "jQuery": 9,
+    "AWS": 9,
     "Bootstrap": 10,
-    "Angular 1 and 2": 7,
-    "React": 3,
-    "Ionic (mobile apps)": 10,
+    "Spring": 3,
+    "React": 8,
+    "Ionic": 6,
     "Django": 9,
     "Wordpress": 10
 }
