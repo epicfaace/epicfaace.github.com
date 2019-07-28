@@ -77,6 +77,10 @@
     max-width: 80%;
 }
 
+.card.main-card {
+    max-width: 100%;
+}
+
 .card:hover {
     background: white;
 }
